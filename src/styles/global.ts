@@ -15,19 +15,7 @@ export default createGlobalStyle`
     font: 400 16px Poppins, sans-serif;
   }
 
-  /* #balloon {
-    display: none;
-    transition: all 0.7s;
-
+  #dropdown-menu {
+    border: solid;
   }
-
-  #profileimg:hover + #balloon {
-    display: flex;
-  } */
-
-  /* @keyframe OptionAnimation {
-    10% { opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-  } */
 `
