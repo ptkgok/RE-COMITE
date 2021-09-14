@@ -18,7 +18,6 @@ import { redirect } from 'next/dist/next-server/server/api-utils'
 import router from 'next/router'
 import { getAPIClient } from '../services/axios'
 
-
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const { signIn } = useContext(AuthContext)
@@ -35,40 +34,37 @@ const Login: React.FC = () => {
 
       <img src={Logo} alt="" />
       <ContainerLogin onSubmit={handleSubmit(handleSignIn)}>
+        <InputComponent
+          {...register('email')}
+          id="email-address"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          placeholder="Email address"
+        />
 
-          <InputComponent
-            {...register('email')}
-            id="email-address"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            placeholder="Email address"
-          />
+        <InputComponent
+          {...register('senha')}
+          id="password"
+          name="senha"
+          type="password"
+          required
+          placeholder="Password"
+        />
 
-          <InputComponent
-            {...register('senha')}
-            id="password"
-            name="senha"
-            type="password"
-            required
-            placeholder="Password"
-          />
-
-           <ButtonComponent text="Avançar">
-            <BiLogIn />
-          </ButtonComponent>
-
+        <ButtonComponent text="Avançar">
+          <BiLogIn />
+        </ButtonComponent>
       </ContainerLogin>
     </Container>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
+export const getServerSideProps: GetServerSideProps = async ctx => {
   const { ['@gok/token']: token } = parseCookies(ctx)
 
-  if(token) ctx.res.writeHead(302, { Location: '/dashboard' }).end()
+  if (token) ctx.res.writeHead(302, { Location: '/dashboard' }).end()
 
   return {
     props: {}

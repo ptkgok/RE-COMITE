@@ -7,10 +7,8 @@ import Logo from '../assets/logomeegu.png'
 
 import { Container } from '../styles/pages/Home'
 import TopMenu from '../components/Menu/TopMenu'
-import { LPTop } from '../styles/pages/LPLayout'
 import DropdownMenu from '../components/Menu/DropdownMenu'
-
-
+import { LPTop } from '../styles/pages/LPLayout'
 
 const Home: React.FC = () => {
   return (
@@ -22,7 +20,6 @@ const Home: React.FC = () => {
         <img src={Logo} width="90px" />
         <DropdownMenu />
       </LPTop>
-     
     </Container>
   )
 }

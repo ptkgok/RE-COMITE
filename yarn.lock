@@ -1062,6 +1062,23 @@
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-9.5.2.tgz#5d92d8ad0f2bd79de2290614e74e5a12a0cda02b"
   integrity sha512-ch/16u3OVy/aIXJROwqXZjGw/tFMyG7qy2IGDA2RFjvQMtPyJJrklmwX2EcfH4+4spRI2MZKes2soI+0w2/MDQ==
 
+"@prisma/client@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.0.2.tgz#f04d9b252f3d0c6918df43ad228eac27d03f6db1"
+  integrity sha512-6SrDYY2Yr5AmYpVB3XAXFqfzxKMdDTemXR7FmfXthnxWhQHoBwRLNZ3B3GyI/MmWa5tr+kaaGDJjp1LU0vuYvQ==
+  dependencies:
+    "@prisma/engines-version" "2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
+
+"@prisma/engines-version@2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db":
+  version "2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db.tgz#c45323e420f47dd950b22c873bdcf38f75e65779"
+  integrity sha512-iArSApZZImVmT9oC/rGOjzvpG2AOqlIeqYcVnop9poA3FxD4zfVPbNPH9DTgOWhc06OkBHujJZeAcsNddVabIQ==
+
+"@prisma/engines@2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db":
+  version "2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db.tgz#b6cf70bc05dd2a62168a16f3ea58a1b011074621"
+  integrity sha512-Q9CwN6e5E5Abso7J3A1fHbcF4NXGRINyMnf7WQ07fXaebxTTARY5BNUzy2Mo5uH82eRVO5v7ImNuR044KTjLJg==
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -4835,6 +4852,13 @@ prettier@^2.1.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.1.tgz#76903c3f8c4449bc9ac597acefa24dc5ad4cbea6"
   integrity sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==
+
+prisma@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-3.0.2.tgz#e86cb6abf4a815c7ac97b9d0ed383f01c253ce34"
+  integrity sha512-TyOCbtWGDVdWvsM1RhUzJXoGClXGalHhyYWIc5eizSF8T1ScGiOa34asBUdTnXOUBFSErbsqMNw40DHAteBm1A==
+  dependencies:
+    "@prisma/engines" "2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
