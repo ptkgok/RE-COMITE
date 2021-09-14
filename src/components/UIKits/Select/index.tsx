@@ -10,17 +10,16 @@ function SelectComponent({
   selectDATA = [],
   ...rest
 }: any) {
-
   const selectRef = useRef(null)
   const { fieldName, registerField, defaultValue } = useField(name)
 
-  useEffect(()=>{
+  useEffect(() => {
     registerField({
       name: fieldName,
       ref: selectRef.current,
       path: 'value'
     })
-  },[fieldName,registerField])
+  }, [fieldName, registerField])
 
   return (
     <Select width={width}>

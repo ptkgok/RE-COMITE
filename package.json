@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@prisma/client": "3.0.2",
+    "@unform/core": "^2.1.6",
+    "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
     "next": "9.5.2",
     "next-images": "^1.4.1",
