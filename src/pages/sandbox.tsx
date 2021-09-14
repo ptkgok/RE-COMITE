@@ -24,6 +24,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const prisma = new PrismaClient()
   const users = await prisma.user.findMany()
   return {
+    revalidate: 1,
     props: {
       users
     }
