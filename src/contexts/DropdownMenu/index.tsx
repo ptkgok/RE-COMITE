@@ -4,7 +4,6 @@ import { IMenuContext } from './IMenuContext'
 export const DropdownMenuContext = createContext({} as IMenuContext)
 
 function DropdownMenuProvider({ children }) {
-
   const [MenuActive, setMenuActive]: any = useState()
 
   return (
