@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   height: 250px;
-  background: ${theme.colors.primary};
+  background: #ecf0f1;
 `
 export const Profile = styled.div`
   max-width: 200px;

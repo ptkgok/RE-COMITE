@@ -5,7 +5,7 @@ import { Props } from './props'
 export const Container = styled.button<Props>`
   border: none;
   width: ${prop => prop.width || '100%'};
-  height: 60px;
+  height: ${prop => prop.height || '60px'};
   display: flex;
   border-radius: ${theme.border.radius};
   justify-content: center;
@@ -24,7 +24,7 @@ export const Container = styled.button<Props>`
   span {
     word-spacing: 2px;
     font-family: 'Poppins';
-    font-weight: 600;
+    font-weight: 800;
   }
 
   :hover {
