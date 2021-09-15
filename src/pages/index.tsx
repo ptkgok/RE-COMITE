@@ -1,12 +1,13 @@
-import LoginLayout from 'layouts/login';
-import React from 'react';
+import LoginLayout from 'layouts/login'
+import FormLogin from 'organisms/forms/login'
+import React from 'react'
 
 const IndexPage: React.FC = () => {
   return (
     <LoginLayout>
-      <h3>no promisses</h3>
+      <FormLogin />
     </LoginLayout>
   )
 }
 
-export default IndexPage;
+export default IndexPage

@@ -1,18 +1,18 @@
 const theme = {
   colors: {
-    background: '#F5F7F9',
+    background: 'rgb(246, 246, 251)',
     foreground: '#FFF',
     backgroundLight: '#F2F5F8',
     backgroundLightMenu: '#FCFEFF',
     text: 'black',
     textop: '#B9BBBC',
-    primary: '#8A32F5',
+    primary: '#3498DB',
     input: '#EFF1F5',
     components: '#FEFEFE'
   },
   border: {
     radius: '9px',
-    size: '1px',
+    size: '1px'
   }
 }
 
