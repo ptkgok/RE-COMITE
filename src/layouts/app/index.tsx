@@ -1,3 +1,4 @@
+import Header from 'organisms/header'
 import Menu from 'organisms/menu'
 import React, { ReactNode } from 'react'
 
@@ -7,7 +8,10 @@ const AppLayout: React.FC<ReactNode> = ({ children }) => {
   return (
     <S.Container>
       <Menu />
-      <S.Content>{children}</S.Content>
+      <S.ContentAndHeader>
+        <Header />
+        <S.Content>{children}</S.Content>
+      </S.ContentAndHeader>
     </S.Container>
   )
 }

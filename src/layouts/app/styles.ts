@@ -8,7 +8,13 @@ export const Container = styled.div`
   align-items: flex-start;
 `
 
-export const Content = styled.div`
+export const ContentAndHeader = styled.div`
   width: 100%;
   height: 100%;
+  margin-left: 70px;
+`
+export const Content = styled.div`
+  width: 100%;
+  height: fit-content;
+  padding: 50px 50px 1% 1%;
 `

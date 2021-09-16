@@ -2,7 +2,7 @@ import LoginLayout from 'layouts/login'
 import FormLogin from 'organisms/forms/login'
 import React from 'react'
 
-const IndexPage: React.FC = () => {
+const IndexScreen: React.FC = () => {
   return (
     <LoginLayout>
       <FormLogin />
@@ -10,4 +10,4 @@ const IndexPage: React.FC = () => {
   )
 }
 
-export default IndexPage
+export default IndexScreen

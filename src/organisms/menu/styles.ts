@@ -12,4 +12,5 @@ export const Container = styled.div`
   gap: 40px;
   padding-top: 50px;
   z-index: 999;
+  position: fixed;
 `

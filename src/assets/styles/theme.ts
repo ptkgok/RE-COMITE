@@ -11,7 +11,7 @@ const theme = {
     components: '#FEFEFE'
   },
   border: {
-    radius: '9px',
+    radius: '3px',
     size: '1px'
   }
 }

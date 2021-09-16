@@ -2,33 +2,22 @@ import React from 'react'
 import AppLayout from 'layouts/app'
 import { GetServerSideProps } from 'next'
 import { PrismaClient } from '@prisma/client'
-import Header from 'organisms/header'
-import CardItems from 'atoms/card'
-import { BiAccessibility } from 'react-icons/bi'
+import ListOfOptionsFeatures from 'organisms/list-of-options-features'
+import { FeaturesCardList } from 'services/utils/features-card-list'
 
 const HomeScreen: React.FC = ({ data }: any) => {
+  console.log(data)
   return (
     <AppLayout>
-      <Header />
-      <CardItems
-        title="Criar Posto"
-        description="Crie postos e atrele a usuários!"
-        icon={<BiAccessibility />}
-      />
+      <ListOfOptionsFeatures list={FeaturesCardList} />
     </AppLayout>
   )
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
 //   const prisma = new PrismaClient()
-
 //   const data = await prisma.user.findMany()
-
-//   return {
-//     props: {
-//       data
-//     }
-//   }
+//   return { props: { data } }
 // }
 
 export default HomeScreen

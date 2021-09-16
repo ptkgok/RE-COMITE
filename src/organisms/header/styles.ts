@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  height: 250px;
+  height: 170px;
   background: #ecf0f1;
 `
 export const Profile = styled.div`
@@ -11,7 +11,7 @@ export const Profile = styled.div`
   height: 70px;
   position: absolute;
   right: 50px;
-  top: 215px;
+  top: 135px;
   border-radius: ${theme.border.radius};
   color: ${theme.colors.text};
   display: flex;

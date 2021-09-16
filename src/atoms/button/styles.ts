@@ -5,7 +5,7 @@ import { Props } from './props'
 export const Container = styled.button<Props>`
   border: none;
   width: ${prop => prop.width || '100%'};
-  height: ${prop => prop.height || '60px'};
+  height: ${prop => prop.height || '40px'};
   display: flex;
   border-radius: ${theme.border.radius};
   justify-content: center;
