@@ -9,13 +9,11 @@ export const Container = styled.div`
   margin: 0px 20px 20px 0px;
   overflow: hidden;
   display: flex;
-  background: rgb(39, 171, 210);
-  border-radius: 15px;
+  background: ${theme.colors.primary};
+  border-radius: ${theme.border.radius};
   color: rgb(220, 220, 220);
   font-size: 13px;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
   align-items: center;
   transition: all 0.5s;
   gap: 20px;
@@ -32,9 +30,7 @@ export const IconCard = styled.div`
   color: ${theme.colors.primary};
   background: ${theme.colors.backgroundLight};
   display: flex;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
   width: 70px;
   height: 50px;

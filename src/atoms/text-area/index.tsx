@@ -5,16 +5,18 @@ interface Props {
   title: string
   defaultValue?: string
   reg: any
-  options: any
   required?: boolean
+  disabled?: boolean
+  height?: string
 }
 
-const Select: React.FC<Props> = ({
+const TextArea: React.FC<Props> = ({
   title,
   defaultValue,
   reg,
-  options,
-  required
+  required,
+  disabled,
+  height
 }) => {
   return (
     <S.Container>
@@ -24,16 +26,11 @@ const Select: React.FC<Props> = ({
         defaultValue={defaultValue}
         {...reg}
         required={required}
-      >
-        {options &&
-          options.map(({ value }, key) => (
-            <option key={key} value={value}>
-              {value}
-            </option>
-          ))}
-      </S.Field>
+        disabled={disabled}
+        height={height}
+      />
     </S.Container>
   )
 }
 
-export default Select
+export default TextArea

@@ -16,10 +16,10 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const prisma = new PrismaClient()
-//   const data = await prisma.user.findMany()
-//   return { props: { data } }
-// }
+export const getStaticProps: GetStaticProps = async () => {
+  const prisma = new PrismaClient()
+  const data = await prisma.user.findMany()
+  return { props: { data } }
+}
 
 export default ListarTodosScreen
