@@ -13,6 +13,7 @@ export default createGlobalStyle`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 400 16px Poppins, sans-serif;
+    font: 400 16px 'IBM Plex Sans', sans-serif;
   }
 
   #dropdown-menu {

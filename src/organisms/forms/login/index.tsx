@@ -1,5 +1,6 @@
 import Button from 'atoms/button'
 import Input from 'atoms/input'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
@@ -9,6 +10,8 @@ import * as S from './styles'
 const FormLogin: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
+  const route = useRouter()
+
   console.log(result)
   const onSubmit = data => setResult(data)
 
@@ -22,6 +25,7 @@ const FormLogin: React.FC = () => {
         />
       </h1>
       <S.LeftSide>
+        { route.pathname.includes('adm') && "Seção de Administrador" }
         <Input title="Email" reg={{ ...register('email') }} />
         <Input title="Senha" reg={{ ...register('senha') }} />
         <Button title="Logar" width="50%" icon={<BiAbacus />} />

@@ -12,7 +12,7 @@ import { BiAbacus } from 'react-icons/bi'
 
 import * as O from './styles'
 
-const FormAgendarRg: React.FC = () => {
+const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
   console.log(result)
@@ -144,4 +144,4 @@ const FormAgendarRg: React.FC = () => {
   )
 }
 
-export default FormAgendarRg
+export default ToScheduleRg

@@ -10,7 +10,7 @@ const MenuItems: React.FC = () => {
   return (
     <S.Container>
       {MenuOptions.map(data => (
-        <MenuButton key={data.id} onClick={() => Router.push(data.url)}>
+        <MenuButton key={data.id} onClick={() => Router.push(`.${data.url}`)}>
           {data.icon}
         </MenuButton>
       ))}

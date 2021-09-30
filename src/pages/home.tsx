@@ -6,7 +6,6 @@ import ListOfOptionsFeatures from 'organisms/list-of-options-features'
 import { FeaturesCardList } from 'services/utils/features-card-list'
 
 const HomeScreen: React.FC = ({ data }: any) => {
-  console.log(data)
   return (
     <AppLayout>
       <ListOfOptionsFeatures list={FeaturesCardList} />

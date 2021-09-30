@@ -4,6 +4,7 @@ import AppLayout from 'layouts/app'
 import { GetStaticProps } from 'next'
 import Table from 'organisms/table'
 import theme from 'assets/styles/theme'
+import { GetAllUsers } from 'services/data/get-all-users'
 
 const ListarTodosScreen: React.FC = ({ data }: any) => {
   return (
@@ -17,8 +18,7 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const prisma = new PrismaClient()
-  const data = await prisma.user.findMany()
+  const data = await GetAllUsers()
   return { props: { data } }
 }
 

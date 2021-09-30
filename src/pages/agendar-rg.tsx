@@ -1,14 +1,14 @@
 import AppLayout from 'layouts/app'
-import FormAgendarRg from 'organisms/forms/agendar-rg'
+import ToScheduleRg from 'organisms/forms/agendar-rg'
 
 import React from 'react'
 
-const AgendarRg: React.FC = () => {
+const ToScheduleScreen: React.FC = () => {
   return (
     <AppLayout>
-      <FormAgendarRg />
+      <ToScheduleRg />
     </AppLayout>
   )
 }
 
-export default AgendarRg
+export default ToScheduleScreen

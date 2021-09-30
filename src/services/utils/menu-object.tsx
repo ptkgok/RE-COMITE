@@ -9,6 +9,6 @@ export const MenuOptions = [
   {
     id: 2,
     icon: <BiPaperPlane />,
-    url: '/home'
+    url: '/listar-todos'
   }
 ]

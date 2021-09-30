@@ -22,10 +22,10 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
         ))}
         {data && url && <S.Column>Editar</S.Column>}
       </S.RowHead>
-      {data?.map(row => (
-        <S.Row>
+      {data?.map((row,key) => (
+        <S.Row key={key}>
           {Columns.map((column: string, key: number) => (
-            <S.Column>{row[column]}</S.Column>
+            <S.Column key={key}>{row[column]}</S.Column>
           ))}
           {data && url && (
             <S.Column>
