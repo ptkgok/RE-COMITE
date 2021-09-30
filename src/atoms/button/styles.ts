@@ -23,8 +23,8 @@ export const Container = styled.button<Props>`
 
   span {
     word-spacing: 2px;
-    font-family: 'Poppins';
     font-weight: 800;
+    line-height: 140%;
   }
 
   :hover {

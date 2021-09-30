@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   return (
     <S.Container>
       <S.Profile>
-        <S.ProfileImage src="https://cdn.iconscout.com/icon/free/png-256/account-avatar-profile-human-man-user-30448.png" />
+        <S.ProfileImage loading="lazy" src="https://cdn.iconscout.com/icon/free/png-256/account-avatar-profile-human-man-user-30448.png" />
         <Button width="70px" height="40px" title="Sair" icon={<BiDoorOpen />} />
       </S.Profile>
     </S.Container>

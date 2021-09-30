@@ -8,6 +8,7 @@ const Menu: React.FC = () => {
     <O.Container>
       <img
         width="50px"
+        loading="lazy"
         src="https://static.blogdaresenhageral.com.br/wp-content/uploads/2015/08/DPT_BAHIA.png"
       />
       <MenuItems />
