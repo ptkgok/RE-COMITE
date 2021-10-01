@@ -3,7 +3,7 @@ import AppLayout from 'layouts/app';
 import ListOfOptionsFeatures from 'organisms/list-of-options-features';
 import ListOfOptionsFeaturesSmallCard from 'organisms/list-of-options-features-small-card';
 import React from 'react';
-import { FeaturesCardList, FeaturesCardListAdm } from 'services/utils/features-card-list';
+import { FeaturesCardList, FeaturesCardListAdm } from 'services/utils/features-card-list-adm';
 
 const HomeAdminScreen: React.FC = () => {
   return (

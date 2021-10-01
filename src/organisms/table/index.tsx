@@ -13,7 +13,6 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
   const GettingColumns: string[] = data && data[0] && Object.keys(data[0])
   const Columns: string[] =
     data && data[0] && ChooseColumns(GettingColumns, contents)
-
   return (
     <S.Container>
       <S.RowHead>
@@ -25,7 +24,7 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
       {data?.map((row,key) => (
         <S.Row key={key}>
           {Columns.map((column: string, key: number) => (
-            <S.Column key={key}>{row[column]}</S.Column>
+            <S.Column key={key}>{row[column] || new Date(row[column])}</S.Column>
           ))}
           {data && url && (
             <S.Column>

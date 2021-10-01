@@ -1,10 +1,13 @@
+import AppLayout from 'layouts/app';
+import CreateUsers from 'organisms/forms/create-users';
 import React from 'react';
 
 const ManageUsersScreen: React.FC = () => {
   return (
-    <div>
-      Gerenciar usuarios
-    </div>
+    <AppLayout>
+      <span>Gerenciar usuarios</span>
+      <CreateUsers />
+    </AppLayout>
   )
 }
 

@@ -46,12 +46,11 @@ model Horario {
 }
 
 model Historicos {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String  @id @default(uuid())
+  dia       String
   acao      String?
-  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId String   @unique
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId String  @unique
 }
 
 model Rg {

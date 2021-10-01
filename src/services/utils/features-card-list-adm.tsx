@@ -20,11 +20,33 @@ export const FeaturesCardList = [
     description:
       'Relatório de Agendamento, Reeimpressão e Produtividade diária',
     url: '/relatorios'
+  }
+]
+
+export const FeaturesCardListAdm = [
+  {
+    icon: <BiUser size="1.2rem" />,
+    title: 'Gerenciar Usuarios',
+    description: 'Liste todos os RGS agendados e pesquise por um específico.',
+    url: 'usuarios'
   },
   {
-    icon: <BiIdCard size="1.2rem" />,
-    title: 'Certidão',
+    icon: <BiLocationPlus size="1.2rem" />,
+    title: 'Gerenciar Orgãos',
+    description: 'Agendar um dia para emissão de rg do cidadão',
+    url: 'orgaos'
+  },
+  {
+    icon: <BiHistory size="1.2rem" />,
+    title: 'Ver Histórico',
+    description:
+      'Relatório de Agendamento, Reeimpressão e Produtividade diária',
+    url: 'historicos'
+  },
+  {
+    icon: <BiHourglass size="1.2rem" />,
+    title: 'Gerenciar Horários',
     description: 'Registrar Solicitação de Certidão',
-    url: '/solicitar-certidao'
+    url: 'horarios'
   }
 ]
