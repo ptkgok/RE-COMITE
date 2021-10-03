@@ -1,5 +1,4 @@
 import React from 'react'
-import { PrismaClient } from '@prisma/client'
 import AppLayout from 'layouts/app'
 import { GetStaticProps } from 'next'
 import Table from 'organisms/table'

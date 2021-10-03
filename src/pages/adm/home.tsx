@@ -10,7 +10,7 @@ const HomeAdminScreen: React.FC = () => {
     <AppLayout>
       <TitleOfSection>Recursos Administrativos</TitleOfSection>
       <ListOfOptionsFeaturesSmallCard list={FeaturesCardListAdm} />
-      
+
       <TitleOfSection>Recursos Comuns</TitleOfSection>
       <ListOfOptionsFeatures list={FeaturesCardList} />
     </AppLayout>

@@ -1,7 +1,5 @@
 import React from 'react'
 import AppLayout from 'layouts/app'
-import { GetServerSideProps } from 'next'
-import { PrismaClient } from '@prisma/client'
 import ListOfOptionsFeatures from 'organisms/list-of-options-features'
 import { FeaturesCardList } from 'services/utils/features-card-list'
 

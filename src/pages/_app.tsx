@@ -11,10 +11,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <AuthProvider>
       <NotificationProvider>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </ThemeProvider>
+        <ThemeProvider 
+        theme={theme}
+        >
+          <Component 
+          {...pageProps} 
+          />
+          <GlobalStyle />
+        </ThemeProvider>
       </NotificationProvider>
     </AuthProvider>
   )

@@ -47,7 +47,7 @@ model Horario {
 
 model Historicos {
   id        String  @id @default(uuid())
-  dia       String
+  data      String
   acao      String?
   usuario   Usuario @relation(fields: [usuarioId], references: [id])
   usuarioId String  @unique

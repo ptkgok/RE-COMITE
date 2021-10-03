@@ -5,10 +5,10 @@ import Table from 'organisms/table';
 import React from 'react';
 import { GetAllHistoric } from 'services/data/get-all-historic';
 
-const ManageHistoricsScreen: React.FC = ({data}: any) => {
+const ManageHistoricsScreen: React.FC = ({ data }: any) => {
   return (
     <AppLayout>
-      { data ? <Table data={data} contents={['acao', 'createdAt']} /> : <LoaderTables /> }
+      {data ? <Table data={data} contents={['acao', 'createdAt', 'dia']} /> : <LoaderTables />}
     </AppLayout>
   )
 }
