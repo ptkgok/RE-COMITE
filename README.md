@@ -1,1 +1,1 @@
-# New Meegu WebApp with NextJS
+# COMITE WITH NEXT JS and integrated BackEND (monolith)

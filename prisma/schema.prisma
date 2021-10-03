@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
@@ -11,28 +8,113 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
+model Usuario {
+  id                  String        @id @default(uuid())
+  email               String        @unique
+  senha               String
+  nome                String?
+  orgao               Orgao[]
+  profile             Profile?
+  tipo_do_usuario     TipoDoUsuario @default(USUARIO)
+  historico           Historicos[]
+  pedidos_de_certidao Certidao[]
+  rgs_cadastrados     Rg[]
+}
+
+model Orgao {
+  id       String    @id @default(uuid())
+  nome     String
+  email    String?
+  telefone String?
+  usuarios Usuario[] @relation(references: [id])
 }
 
 model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
+  id        String  @id @default(uuid())
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId String  @unique
 }
 
-model User {
+model Horario {
   id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+  posto   String   @db.VarChar(20)
+  dia     Int
+  dianome String   @db.VarChar(20)
+  data    DateTime @db.Date
+  hora    DateTime @db.Time(0)
+  marcado String   @db.VarChar(3)
+}
+
+model Historicos {
+  id        String  @id @default(uuid())
+  data      String
+  acao      String?
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId String  @unique
+}
+
+model Rg {
+  id                           String  @id @default(uuid())
+  nome_completo                String
+  nome_do_pai                  String
+  nome_da_mae                  String
+  cpf                          String
+  rg                           String
+  orgao                        String
+  motivo                       String
+  data_de_solicitacao          String
+  cidadao_sabe_cpf             Boolean
+  cidadao_em_posse_da_certidao Boolean
+  contato                      String
+  contato2                     String?
+  contato3                     String?
+  whatsapp                     String?
+  estado_de_naturalidade       String
+  cidade_de_naturalidade       String
+  endereco_residencial         String
+  cidade_residencial           String
+  cep                          String
+  status                       String
+  local_de_agendamento         String
+  data_de_agendamento          String
+  hora_do_agendamento          String
+  resolvido                    Boolean
+  observacao                   String
+  usuario                      Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId                    String  @unique
+  data_de_nascimento           String
+}
+
+model Certidao {
+  id                     String   @id @default(uuid())
+  nome_completo          String
+  status                 String
+  nome_do_pai            String
+  nome_da_mae            String
+  cpf                    String
+  rg                     String
+  orgao                  String
+  email_do_solicitante   String
+  observacao             String
+  contato                String
+  estado_de_naturalidade String
+  data_de_nascimento     DateTime
+  data_de_solicitacao    DateTime
+  tipo_de_certidao       String?
+  data_de_registro       String?
+  data_da_certidao       String?
+  resposta               String?
+  estado_de_registro     String?
+  comarca                String?
+  distrito               String?
+  livro                  String?
+  folha                  String?
+  termo                  String?
+  usuario                Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId              String   @unique
+}
+
+enum TipoDoUsuario {
+  ADMIN
+  USUARIO
 }
