@@ -9,8 +9,6 @@
   },
   "dependencies": {
     "@prisma/client": "3.0.2",
-    "@unform/core": "^2.1.6",
-    "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
     "next": "^11.1.2",
     "next-images": "^1.4.1",
@@ -23,8 +21,7 @@
     "react-input-mask": "^2.0.4",
     "react-native-media-query": "^1.0.7",
     "styled-components": "^5.1.1",
-    "styled-media-query": "^2.1.2",
-    "yarn": "^1.22.13"
+    "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
