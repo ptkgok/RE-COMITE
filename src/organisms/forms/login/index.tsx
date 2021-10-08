@@ -1,9 +1,11 @@
 import Button from 'atoms/button'
 import Input from 'atoms/input'
+import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
+import AuthFn from '../../../pages/api/authentication'
 
 import * as S from './styles'
 
@@ -13,7 +15,11 @@ const FormLogin: React.FC = () => {
   const route = useRouter()
 
   console.log(result)
-  const onSubmit = data => setResult(data)
+  const onSubmit = async (payload) => {
+    const {data} = await axios.post('api/authentication', payload)
+    console.log(data)
+  }
+
 
   return (
     <S.Container onSubmit={handleSubmit(onSubmit)}>
