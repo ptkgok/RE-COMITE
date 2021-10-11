@@ -1,24 +1,20 @@
+import React, { useContext, useState } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
-import axios from 'axios'
+import { AuthContext } from 'contexts/Authentication/AuthContext'
+import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import { parseCookies, setCookie } from 'nookies'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
-import AuthFn from '../../../pages/api/authentication'
 
 import * as S from './styles'
 
 const FormLogin: React.FC = () => {
   const { register, handleSubmit } = useForm()
-  const [result, setResult] = useState('')
   const route = useRouter()
-
-  console.log(result)
-  const onSubmit = async (payload) => {
-    const {data} = await axios.post('api/authentication', payload)
-    console.log(data)
-  }
+  const { signIn } = useContext(AuthContext)
+  const onSubmit = async (payload) => await signIn(payload)
 
 
   return (
@@ -46,5 +42,6 @@ const FormLogin: React.FC = () => {
     </S.Container>
   )
 }
+
 
 export default FormLogin

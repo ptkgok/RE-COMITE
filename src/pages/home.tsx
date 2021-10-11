@@ -2,6 +2,8 @@ import React from 'react'
 import AppLayout from 'layouts/app'
 import ListOfOptionsFeatures from 'organisms/list-of-options-features'
 import { FeaturesCardList } from 'services/utils/features-card-list'
+import { GetServerSideProps } from 'next'
+import { parseCookies } from 'nookies'
 
 const HomeScreen: React.FC = ({ data }: any) => {
   return (
@@ -11,10 +13,19 @@ const HomeScreen: React.FC = ({ data }: any) => {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const prisma = new PrismaClient()
-//   const data = await prisma.user.findMany()
-//   return { props: { data } }
-// }
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ['@IIPM/token']: token } = parseCookies(ctx)
+  
+  if (!token) {
+    ctx.res.setHeader("location", "/");
+    ctx.res.statusCode = 302;
+    ctx.res.end();
+    return { props: {} }
+  }
+
+  return {
+    props: {}
+  }
+}
 
 export default HomeScreen

@@ -1,22 +1,29 @@
+import React, { useContext } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import RadioButton from 'atoms/radio-button'
 import Select from 'atoms/select'
-import { SelectData } from 'atoms/select/test-data'
+import { SelectData, SelectDataBool } from 'atoms/select/test-data'
 import TextArea from 'atoms/text-area'
+import axios from 'axios'
+import { AuthContext } from 'contexts/Authentication/AuthContext'
 import { DoubleElementsInRow } from 'layouts/common'
 import RadioButtonsGroup from 'molecules/radio-buttons-group'
-import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
+import { ScheduleRG } from 'services/utils/scheduleRG'
+
 
 import * as O from './styles'
 
-const ToScheduleRg: React.FC = () => {
+const ToScheduleRg: React.FC = ({ userId }: any) => {
   const { register, handleSubmit } = useForm()
-  const [result, setResult] = useState('')
-  console.log(result)
-  const onSubmit = data => setResult(data)
+  const { user } = useContext(AuthContext)
+
+  const onSubmit = async (payload: ScheduleRG) => {
+    console.log(payload)
+    const {data} = await axios.post('/api/to-schedule-rg', payload)
+  }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
@@ -48,31 +55,35 @@ const ToScheduleRg: React.FC = () => {
       <O.CenterSide>
         <RadioButtonsGroup title="Cidadão sabe CPF?">
           <RadioButton
-            value="Sim"
+            value={true}
+            label="Sim"
             name="cidadao_sabe_cpf-sim"
             reg={{ ...register('cidadao_sabe_cpf') }}
           />
           <RadioButton
-            value="Nao"
+            value={false}
+            label="Não"
             name="cidadao_sabe_cpf-nao"
             reg={{ ...register('cidadao_sabe_cpf') }}
           />
         </RadioButtonsGroup>
         <RadioButtonsGroup title="Cidadão em posse da Certidão?">
           <RadioButton
-            value="Sim"
+            value={true}
+            label="Sim"
             name="cidadao_em_posse_da_certidao-sim"
             reg={{ ...register('cidadao_em_posse_da_certidao') }}
           />
           <RadioButton
-            value="Nao"
+            value={false}
+            label="Não"
             name="cidadao_em_posse_da_certidao-nao"
             reg={{ ...register('cidadao_em_posse_da_certidao') }}
           />
         </RadioButtonsGroup>
         <DoubleElementsInRow>
-          <Input title="Telefone" reg={{ ...register('telefone') }} />
-          <Input title="Telefone 2" reg={{ ...register('telefone_2') }} />
+          <Input title="Telefone" reg={{ ...register('contato') }} />
+          <Input title="Telefone 2" reg={{ ...register('contato2') }} />
         </DoubleElementsInRow>
         <Select
           title="Motivo"
@@ -88,21 +99,23 @@ const ToScheduleRg: React.FC = () => {
           <Select
             title="Resolvido?"
             reg={{ ...register('resolvido') }}
-            options={SelectData}
+            options={SelectDataBool}
           />
         </DoubleElementsInRow>
         <DoubleElementsInRow>
           <Input
             title="Orgão Solicitante"
+            type="text"
             reg={{ ...register('orgao') }}
+            defaultValue="IIPM"
             disabled
           />
           <Input
             title="Data de Solicitação"
-            reg={{ ...register('data_de_solicitaçao') }}
-            defaultValue={new Date().toLocaleDateString('pt-BR')}
+            reg={{ ...register('data_de_solicitacao') }}
+            defaultValue={new Date().toLocaleString('pt-BR').split(' ')[0].toString()}
             disabled
-            type="date"
+            type="text"
           />
         </DoubleElementsInRow>
       </O.CenterSide>
@@ -111,7 +124,7 @@ const ToScheduleRg: React.FC = () => {
         <DoubleElementsInRow>
           <Input
             title="Endereço Residencial"
-            reg={{ ...register('endereço_residencial') }}
+            reg={{ ...register('endereco_residencial') }}
           />
           <Input
             title="Cidade Residencial"
@@ -133,11 +146,16 @@ const ToScheduleRg: React.FC = () => {
 
           <Input
             title="Hora de Agendamento"
-            reg={{ ...register('hora_de_agendamento') }}
+            reg={{ ...register('hora_do_agendamento') }}
           />
         </DoubleElementsInRow>
-        <TextArea title="Observação" reg={{ ...register('observaçao') }} />
-
+        <TextArea title="Observação" reg={{ ...register('observacao') }} />
+        <Input
+            title="Usuario"
+            reg={{ ...register('usuario') }}
+            defaultValue={`${user}`}
+            style={{ display: 'none' }}
+          />
         <Button title="Enviar" height="40px" width="100%" icon={<BiAbacus />} />
       </O.RightSide>
     </O.Container>

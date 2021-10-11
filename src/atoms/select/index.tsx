@@ -26,9 +26,9 @@ const Select: React.FC<Props> = ({
         required={required}
       >
         {options &&
-          options.map(({ value }, key) => (
+          options.map(({ value, label }, key) => (
             <option key={key} value={value}>
-              {value}
+              {label}
             </option>
           ))}
       </S.Field>

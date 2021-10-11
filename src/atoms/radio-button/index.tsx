@@ -3,15 +3,16 @@ import React from 'react'
 import * as A from './styles'
 
 interface Props {
-  value: string | number
+  value: any
   reg: any
+  label?: string
   name: string
 }
 
-const RadioButton: React.FC<Props> = ({ value, name, reg }) => {
+const RadioButton: React.FC<Props> = ({ value, name, reg, label }) => {
   return (
     <A.Container htmlFor={name}>
-      <A.Label>{value}</A.Label>
+      <A.Label>{label}</A.Label>
       <A.RadioButton
         id={name}
         name={name}

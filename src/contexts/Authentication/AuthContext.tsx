@@ -15,11 +15,12 @@ export function AuthProvider({ children }) {
   const isAuthenticated = !!user;
 
   useEffect(() => {
-    const { '@gok/token': token } = parseCookies()
+    const { '@IIPM/token': token } = parseCookies()
+    const { ['@IIPM/user']: userId } = parseCookies()
 
     if (token) {
       recoverUserInformation().then(response => {
-        setUser(response.user)
+        setUser(userId)
       })
     }
   }, [])
@@ -32,15 +33,17 @@ export function AuthProvider({ children }) {
         senha
       })
   
-      setCookie(undefined, '@gok/token', token, {
-        maxAge: 60 * 60 * 1, // 1 hour
+      setCookie(undefined, '@IIPM/token', token, {
+        maxAge: 60 * 60 * 1
+      })
+      setCookie(undefined, '@IIPM/user', user['id'], {
+        maxAge: 60 * 60 * 1
       })
   
       api.defaults.headers['Authorization'] = `Bearer ${token}`;
-  
       setUser(user)
   
-      Router.push('/dashboard'); 
+      Router.push('/home'); 
     } catch (error) {
       console.error(error);
     }

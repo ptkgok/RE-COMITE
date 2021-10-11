@@ -1,28 +1,25 @@
-import { api } from "./api"
+import axios from 'axios'
 
 type SignInRequestData = {
-  email: string;
-  senha: string;
+  email: string
+  senha: string
 }
 
 export async function signInRequest(data: SignInRequestData) {
   try {
-
-    const {data: { Usuario, token }} = await api.post('/login',data)
+    const {
+      data: { user, token }
+    } = await axios.post('api/authentication', data)
 
     console.log(data)
 
     return {
       token: token,
-      user: Usuario
+      user: user
     }
-
   } catch (error) {
-    
     console.log(error)
-
   }
-
 }
 
 export async function recoverUserInformation() {

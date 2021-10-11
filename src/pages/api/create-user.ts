@@ -1,5 +1,4 @@
 import { VercelRequest, VercelResponse } from "@vercel/node"
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import { PrismaClient } from "@prisma/client"
 
