@@ -1,6 +1,7 @@
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import TextArea from 'atoms/text-area'
+import axios from 'axios'
 import { DoubleElementsInRow } from 'layouts/common'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,9 +10,11 @@ import * as O from '../left-center-right'
 
 const FormSolicitarCertidao: React.FC = () => {
   const { register, handleSubmit } = useForm()
-  const [result, setResult] = useState('')
-  console.log(result)
-  const onSubmit = data => setResult(data)
+
+  const onSubmit = async (payload) => {
+    console.log(payload)
+    const {data} = await axios.post('/api/require-certificate', payload)
+  }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +31,7 @@ const FormSolicitarCertidao: React.FC = () => {
         <DoubleElementsInRow>
           <Input
             title="Orgão Solicitante"
-            reg={{ ...register('orgao_solicitante') }}
+            reg={{ ...register('orgao') }}
             disabled
           />
           <Input
@@ -58,12 +61,12 @@ const FormSolicitarCertidao: React.FC = () => {
         </DoubleElementsInRow>
       </O.CenterSide>
       <O.RightSide>
-        <Input title="Telefone" reg={{ ...register('telefone') }} />
-        <TextArea title="Observação" reg={{ ...register('observaçao') }} />
+        <Input title="Telefone" reg={{ ...register('contato') }} />
+        <TextArea title="Observação" reg={{ ...register('observacao') }} />
         <Input
           title="Coordenador"
           style={{ display: 'none' }}
-          reg={{ ...register('observaçao') }}
+          reg={{ ...register('usuario') }}
           type="text"
         />
         <Button title="Enviar" height="40px" width="100%" icon={<BiSend />} />
