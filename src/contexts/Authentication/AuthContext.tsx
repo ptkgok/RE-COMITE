@@ -10,17 +10,18 @@ import { AuthContextType, SignInData } from "./Types";
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState<any>(null)
-
+  const [user, setUser] = useState<any>({})
+  console.log(user)
   const isAuthenticated = !!user;
 
   useEffect(() => {
     const { '@IIPM/token': token } = parseCookies()
-    const { ['@IIPM/user']: userId } = parseCookies()
+    const { ['@IIPM/user']: user } = parseCookies()
 
     if (token) {
+      
       recoverUserInformation().then(response => {
-        setUser(userId)
+        setUser(JSON.parse(user))
       })
     }
   }, [])
@@ -36,7 +37,7 @@ export function AuthProvider({ children }) {
       setCookie(undefined, '@IIPM/token', token, {
         maxAge: 60 * 60 * 1
       })
-      setCookie(undefined, '@IIPM/user', user['id'], {
+      setCookie(undefined, '@IIPM/user', JSON.stringify(user), {
         maxAge: 60 * 60 * 1
       })
   

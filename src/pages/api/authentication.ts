@@ -6,7 +6,14 @@ import { Prisma } from 'services/utils/prisma-client'
 export default async (request: VercelRequest, response: VercelResponse) => {
   const { email, senha } = request.body
 
-  const user = await Prisma.usuario.findFirst({ where: { email } })
+  const user = await Prisma.usuario.findFirst({ where: { email }, select: {
+    orgao: true,
+    nome: true,
+    senha: true,
+    id: true,
+    email: true,
+    tipo_do_usuario: true,
+  } })
 
   if (!user) return response.json({ message: 'Usuario não encontrado' })
   if (!(await bcrypt.compare(senha, user?.senha)))

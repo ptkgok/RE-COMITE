@@ -11,8 +11,6 @@ export async function signInRequest(data: SignInRequestData) {
       data: { user, token }
     } = await axios.post('api/authentication', data)
 
-    console.log(data)
-
     return {
       token: token,
       user: user

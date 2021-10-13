@@ -1,6 +1,6 @@
 import { Prisma } from ".prisma/client";
 
-export class ScheduleRG implements Prisma.RgUncheckedCreateInput {
+export class ScheduleRG implements Prisma.RgCreateInput {
   id?: string;
   nome_completo: string;
   nome_do_pai: string;
@@ -10,8 +10,8 @@ export class ScheduleRG implements Prisma.RgUncheckedCreateInput {
   orgao: string;
   motivo: string;
   data_de_solicitacao: string;
-  cidadao_sabe_cpf: boolean;
-  cidadao_em_posse_da_certidao: boolean;
+  cidadao_sabe_cpf: string;
+  cidadao_em_posse_da_certidao: string;
   contato: string;
   contato2?: string;
   contato3?: string;
@@ -25,9 +25,8 @@ export class ScheduleRG implements Prisma.RgUncheckedCreateInput {
   local_de_agendamento: string;
   data_de_agendamento: string;
   hora_do_agendamento: string;
-  resolvido: boolean;
+  resolvido: string;
   observacao: string;
-  usuarioId: string;
   data_de_nascimento: string;
-
+  usuario: Prisma.UsuarioCreateNestedOneWithoutRgs_cadastradosInput;
 }

@@ -63,8 +63,8 @@ model Rg {
   orgao                        String
   motivo                       String
   data_de_solicitacao          String
-  cidadao_sabe_cpf             Boolean
-  cidadao_em_posse_da_certidao Boolean
+  cidadao_sabe_cpf             String
+  cidadao_em_posse_da_certidao String
   contato                      String
   contato2                     String?
   contato3                     String?
@@ -78,10 +78,10 @@ model Rg {
   local_de_agendamento         String
   data_de_agendamento          String
   hora_do_agendamento          String
-  resolvido                    Boolean
+  resolvido                    String
   observacao                   String
   usuario                      Usuario @relation(fields: [usuarioId], references: [id])
-  usuarioId                    String  @unique
+  usuarioId String
   data_de_nascimento           String
 }
 

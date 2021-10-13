@@ -22,9 +22,9 @@ const Input: React.FC<Props> = ({
 }) => {
   return (
     <S.Container {...rest}>
-      <S.Label htmlFor="title">{title}</S.Label>
+      <S.Label htmlFor={title}>{title}</S.Label>
       <S.Field
-        id="title"
+        id={title}
         defaultValue={defaultValue}
         {...reg}
         required={required}

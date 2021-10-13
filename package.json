@@ -25,6 +25,7 @@
     "react-icons": "^4.2.0",
     "react-input-mask": "^2.0.4",
     "react-native-media-query": "^1.0.7",
+    "react-pdf": "^5.4.0",
     "styled-components": "^5.1.1",
     "styled-media-query": "^2.1.2"
   },

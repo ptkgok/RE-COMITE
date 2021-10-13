@@ -29,7 +29,7 @@ const FormLogin: React.FC = () => {
       <S.LeftSide>
         { route.pathname.includes('adm') && "Seção de Administrador" }
         <Input title="Email" reg={{ ...register('email') }} />
-        <Input title="Senha" reg={{ ...register('senha') }} />
+        <Input title="Senha" type="password" reg={{ ...register('senha') }} />
         <Button title="Logar" width="50%" icon={<BiAbacus />} />
       </S.LeftSide>
       <S.RightSide>

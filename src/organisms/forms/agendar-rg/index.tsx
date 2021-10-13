@@ -16,12 +16,11 @@ import { ScheduleRG } from 'services/utils/scheduleRG'
 
 import * as O from './styles'
 
-const ToScheduleRg: React.FC = ({ userId }: any) => {
+const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const { user } = useContext(AuthContext)
 
-  const onSubmit = async (payload: ScheduleRG) => {
-    console.log(payload)
+  const onSubmit = async (payload) => {
     const {data} = await axios.post('/api/to-schedule-rg', payload)
   }
 
@@ -55,13 +54,13 @@ const ToScheduleRg: React.FC = ({ userId }: any) => {
       <O.CenterSide>
         <RadioButtonsGroup title="Cidadão sabe CPF?">
           <RadioButton
-            value={true}
+            value="Sim"
             label="Sim"
             name="cidadao_sabe_cpf-sim"
             reg={{ ...register('cidadao_sabe_cpf') }}
           />
           <RadioButton
-            value={false}
+            value="Não"
             label="Não"
             name="cidadao_sabe_cpf-nao"
             reg={{ ...register('cidadao_sabe_cpf') }}
@@ -69,13 +68,13 @@ const ToScheduleRg: React.FC = ({ userId }: any) => {
         </RadioButtonsGroup>
         <RadioButtonsGroup title="Cidadão em posse da Certidão?">
           <RadioButton
-            value={true}
+            value="Sim"
             label="Sim"
             name="cidadao_em_posse_da_certidao-sim"
             reg={{ ...register('cidadao_em_posse_da_certidao') }}
           />
           <RadioButton
-            value={false}
+            value="Não"
             label="Não"
             name="cidadao_em_posse_da_certidao-nao"
             reg={{ ...register('cidadao_em_posse_da_certidao') }}
@@ -107,15 +106,14 @@ const ToScheduleRg: React.FC = ({ userId }: any) => {
             title="Orgão Solicitante"
             type="text"
             reg={{ ...register('orgao') }}
-            defaultValue="IIPM"
-            disabled
+            defaultValue={user.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
+            // disabled
           />
           <Input
             title="Data de Solicitação"
             reg={{ ...register('data_de_solicitacao') }}
-            defaultValue={new Date().toLocaleString('pt-BR').split(' ')[0].toString()}
-            disabled
-            type="text"
+            defaultValue={new Date().toLocaleString('pt-BR').split(' ')[0]}
+            type="date"
           />
         </DoubleElementsInRow>
       </O.CenterSide>
@@ -152,8 +150,8 @@ const ToScheduleRg: React.FC = ({ userId }: any) => {
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
         <Input
             title="Usuario"
-            reg={{ ...register('usuario') }}
-            defaultValue={`${user}`}
+            reg={{ ...register('usuarioId') }}
+            defaultValue={`${user.id}`}
             style={{ display: 'none' }}
           />
         <Button title="Enviar" height="40px" width="100%" icon={<BiAbacus />} />

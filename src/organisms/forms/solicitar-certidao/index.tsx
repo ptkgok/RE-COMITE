@@ -2,8 +2,9 @@ import Button from 'atoms/button'
 import Input from 'atoms/input'
 import TextArea from 'atoms/text-area'
 import axios from 'axios'
+import { AuthContext } from 'contexts/Authentication/AuthContext'
 import { DoubleElementsInRow } from 'layouts/common'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiSend } from 'react-icons/bi'
 import * as O from '../left-center-right'
@@ -11,19 +12,21 @@ import * as O from '../left-center-right'
 const FormSolicitarCertidao: React.FC = () => {
   const { register, handleSubmit } = useForm()
 
+  const {user} = useContext(AuthContext)
+
   const onSubmit = async (payload) => {
-    console.log(payload)
     const {data} = await axios.post('/api/require-certificate', payload)
+    console.log(data)
   }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
       <O.LeftSide>
-        <Input title="Nome Completo" reg={{ ...register('nome_completo') }} />
-        <Input title="Nome da Mãe" reg={{ ...register('nome_da_mae') }} />
-        <Input title="Nome do Pai" reg={{ ...register('nome_do_pai') }} />
+        <Input title="Nome Completo" reg={{ ...register('nome_completo') }} required />
+        <Input title="Nome da Mãe" reg={{ ...register('nome_da_mae') }} required />
+        <Input title="Nome do Pai" reg={{ ...register('nome_do_pai') }} required />
         <DoubleElementsInRow>
-          <Input title="CPF" reg={{ ...register('cpf') }} />
+          <Input title="CPF" reg={{ ...register('cpf') }}  />
           <Input title="RG" reg={{ ...register('rg') }} />
         </DoubleElementsInRow>
       </O.LeftSide>
@@ -32,11 +35,12 @@ const FormSolicitarCertidao: React.FC = () => {
           <Input
             title="Orgão Solicitante"
             reg={{ ...register('orgao') }}
+            defaultValue={user.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
             disabled
           />
           <Input
             title="Data de Solicitação"
-            reg={{ ...register('data_de_solicitaçao') }}
+            reg={{ ...register('data_de_solicitacao') }}
             type="date"
           />
         </DoubleElementsInRow>
