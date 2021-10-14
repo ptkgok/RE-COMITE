@@ -1,9 +1,11 @@
 import Button from 'atoms/button'
 import Input from 'atoms/input'
+import Select from 'atoms/select'
 import TextArea from 'atoms/text-area'
 import axios from 'axios'
 import { AuthContext } from 'contexts/Authentication/AuthContext'
 import { DoubleElementsInRow } from 'layouts/common'
+import { parseCookies } from 'nookies'
 import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiSend } from 'react-icons/bi'
@@ -12,7 +14,10 @@ import * as O from '../left-center-right'
 const FormSolicitarCertidao: React.FC = () => {
   const { register, handleSubmit } = useForm()
 
-  const {user} = useContext(AuthContext)
+  // Evitar que o id do usuario seja enviado 'undefined'
+  const { ['@IIPM/user']: userString }: any = parseCookies()
+
+  const user = JSON.parse(userString)
 
   const onSubmit = async (payload) => {
     const {data} = await axios.post('/api/require-certificate', payload)
@@ -35,8 +40,7 @@ const FormSolicitarCertidao: React.FC = () => {
           <Input
             title="Orgão Solicitante"
             reg={{ ...register('orgao') }}
-            defaultValue={user.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
-            disabled
+            defaultValue={user?.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
           />
           <Input
             title="Data de Solicitação"
@@ -47,6 +51,11 @@ const FormSolicitarCertidao: React.FC = () => {
         <Input
           title="Email do Solicitante"
           reg={{ ...register('email_do_solicitante') }}
+        />
+        <Select 
+          title="Status"
+          reg={{ ...register('status') }}
+          options={[{ id: 1, label: "Solicitado", value: "Solicitado" }]}
         />
         <Input
           title="Data de Nascimento"
@@ -68,11 +77,11 @@ const FormSolicitarCertidao: React.FC = () => {
         <Input title="Telefone" reg={{ ...register('contato') }} />
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
         <Input
-          title="Coordenador"
-          style={{ display: 'none' }}
-          reg={{ ...register('usuario') }}
-          type="text"
-        />
+            title="Usuario"
+            reg={{ ...register('usuarioId') }}
+            defaultValue={`${user?.id}`}
+            style={{ display: 'none' }}
+          />
         <Button title="Enviar" height="40px" width="100%" icon={<BiSend />} />
       </O.RightSide>
     </O.Container>

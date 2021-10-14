@@ -99,8 +99,8 @@ model Certidao {
   contato                String
   estado_de_naturalidade String
   cidade_de_naturalidade String
-  data_de_nascimento     DateTime
-  data_de_solicitacao    DateTime
+  data_de_nascimento     String?
+  data_de_solicitacao    String?
   tipo_de_certidao       String?
   data_de_registro       String?
   data_da_certidao       String?
@@ -111,8 +111,8 @@ model Certidao {
   livro                  String?
   folha                  String?
   termo                  String?
-  usuario                Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId              String   @unique
+  usuario                      Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId String
 }
 
 enum TipoDoUsuario {

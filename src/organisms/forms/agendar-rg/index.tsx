@@ -15,13 +15,16 @@ import { ScheduleRG } from 'services/utils/scheduleRG'
 
 
 import * as O from './styles'
+import { parseCookies } from 'nookies'
 
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
-  const { user } = useContext(AuthContext)
+  const { ['@IIPM/user']: userString }: any = parseCookies()
 
+  const user = JSON.parse(userString)
   const onSubmit = async (payload) => {
     const {data} = await axios.post('/api/to-schedule-rg', payload)
+    console.log(data)
   }
 
   return (
@@ -106,7 +109,7 @@ const ToScheduleRg: React.FC = () => {
             title="Orgão Solicitante"
             type="text"
             reg={{ ...register('orgao') }}
-            defaultValue={user.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
+            defaultValue={user?.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
             // disabled
           />
           <Input
