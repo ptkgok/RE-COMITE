@@ -20,6 +20,21 @@ export async function signInRequest(data: SignInRequestData) {
   }
 }
 
+export async function signInAdmRequest(data: SignInRequestData) {
+  try {
+    const {
+      data: { user, token }
+    } = await axios.post('api/authentication-adm', data)
+
+    return {
+      token: token,
+      user: user
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function recoverUserInformation() {
   // signInRequest()
 

@@ -1,23 +1,20 @@
+import React, { useContext } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import Select from 'atoms/select'
 import TextArea from 'atoms/text-area'
 import axios from 'axios'
-import { AuthContext } from 'contexts/Authentication/AuthContext'
 import { DoubleElementsInRow } from 'layouts/common'
-import { parseCookies } from 'nookies'
-import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiSend } from 'react-icons/bi'
 import * as O from '../left-center-right'
 
+import { AuthContext } from 'contexts/Authentication/AuthContext'
+
 const FormSolicitarCertidao: React.FC = () => {
   const { register, handleSubmit } = useForm()
+  const { user } = useContext(AuthContext)
 
-  // Evitar que o id do usuario seja enviado 'undefined'
-  const { ['@IIPM/user']: userString }: any = parseCookies()
-
-  const user = JSON.parse(userString)
 
   const onSubmit = async (payload) => {
     const {data} = await axios.post('/api/require-certificate', payload)
@@ -52,6 +49,7 @@ const FormSolicitarCertidao: React.FC = () => {
           title="Email do Solicitante"
           reg={{ ...register('email_do_solicitante') }}
         />
+        <DoubleElementsInRow>
         <Select 
           title="Status"
           reg={{ ...register('status') }}
@@ -61,6 +59,7 @@ const FormSolicitarCertidao: React.FC = () => {
           title="Data de Nascimento"
           reg={{ ...register('data_de_nascimento') }}
         />
+        </DoubleElementsInRow>
         <DoubleElementsInRow>
           <Input
             title="Estado de Naturalidade"

@@ -9,12 +9,13 @@ import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
 
 import * as S from './styles'
+import { signInAdmRequest } from 'services/auth'
 
 const FormLogin: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const route = useRouter()
   const { signIn } = useContext(AuthContext)
-  const onSubmit = async (payload) => await signIn(payload)
+  const onSubmit = async (payload) => route.pathname.includes('adm') ? await signInAdmRequest(payload) : await signIn(payload)
 
 
   return (

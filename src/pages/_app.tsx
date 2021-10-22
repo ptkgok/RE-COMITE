@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from 'assets/styles/global'
 import theme from 'assets/styles/theme'
-import { AuthProvider } from 'contexts/Authentication/AuthContext'
+import { AuthContext, AuthProvider } from 'contexts/Authentication/AuthContext'
 import NotificationProvider from 'contexts/Notification'
+
+
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -14,6 +16,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <ThemeProvider 
         theme={theme}
         >
+          
           <Component 
           {...pageProps} 
           />
