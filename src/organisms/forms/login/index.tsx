@@ -1,22 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import { AuthContext } from 'contexts/Authentication/AuthContext'
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { parseCookies, setCookie } from 'nookies'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
-
 import * as S from './styles'
-import { signInAdmRequest } from 'services/auth'
 
 const FormLogin: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const route = useRouter()
-  const { signIn } = useContext(AuthContext)
-  const onSubmit = async (payload) => route.pathname.includes('adm') ? await signInAdmRequest(payload) : await signIn(payload)
-
+  const { signIn, signInAdm } = useContext(AuthContext)
+  const onSubmit = async (payload) => route.pathname.includes('adm') ? await signInAdm(payload) : await signIn(payload)
 
   return (
     <S.Container onSubmit={handleSubmit(onSubmit)}>

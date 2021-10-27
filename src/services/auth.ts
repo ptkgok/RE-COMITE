@@ -8,12 +8,12 @@ type SignInRequestData = {
 export async function signInRequest(data: SignInRequestData) {
   try {
     const {
-      data: { user, token }
+      data: { usuario, token }
     } = await axios.post('api/authentication', data)
 
     return {
-      token: token,
-      user: user
+      token,
+      usuario
     }
   } catch (error) {
     console.log(error)
@@ -22,27 +22,22 @@ export async function signInRequest(data: SignInRequestData) {
 
 export async function signInAdmRequest(data: SignInRequestData) {
   try {
-    const {
-      data: { user, token }
-    } = await axios.post('api/authentication-adm', data)
+    const { data: { usuario, token } } = await axios.post('api/authentication-adm', data)
 
-    return {
-      token: token,
-      user: user
-    }
+    return { token, usuario }
   } catch (error) {
     console.log(error)
   }
 }
 
-export async function recoverUserInformation() {
-  // signInRequest()
+// export async function recoverUserInformation() {
+//   // signInRequest()
 
-  return {
-    user: {
-      name: 'Diego Fernandes',
-      email: 'diego@rocketseat.com.br',
-      avatar_url: 'https://github.com/diego3g.png'
-    }
-  }
-}
+//   return {
+//     user: {
+//       name: 'Diego Fernandes',
+//       email: 'diego@rocketseat.com.br',
+//       avatar_url: 'https://github.com/diego3g.png'
+//     }
+//   }
+// }

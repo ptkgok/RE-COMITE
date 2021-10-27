@@ -13,6 +13,7 @@ export type SignInData = {
 
 export type AuthContextType = {
   isAuthenticated: boolean;
-  user: User;
+  usuario?: User;
   signIn: (data: SignInData) => Promise<void>
+  signInAdm: (data: SignInData) => Promise<void>
 }
