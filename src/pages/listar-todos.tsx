@@ -34,8 +34,8 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['@IIPM/user']: idUser } = parseCookies(ctx)
-  const data = await GetAllRgs(idUser)
+  const { ['@IIPM/user']: user } = parseCookies(ctx)
+  const data = await GetAllRgs(user?.id)
   return { props: { data } }
 }
 

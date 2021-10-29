@@ -1,31 +1,51 @@
-import Button from 'atoms/button';
-import Input from 'atoms/input';
-import Select from 'atoms/select';
-import { SelectData } from 'atoms/select/test-data';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { BiAddToQueue } from 'react-icons/bi';
+import Button from 'atoms/button'
+import Input from 'atoms/input'
+import Select from 'atoms/select'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { BiAddToQueue } from 'react-icons/bi'
 import * as O from './styles'
 
-
 const CreateUsersForm: React.FC = () => {
-    const { register, handleSubmit } = useForm()
-    const [result, setResult] = useState('')
-    const route = useRouter()
-  
-    console.log(result)
-    const onSubmit = data => setResult(data)
+  const { register, handleSubmit } = useForm()
+  const [result, setResult] = useState('')
+  const [roles, setRoles] = useState([{}])
+
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await axios.get('/api/usuarios/roles-users')
+      let roles = await data.roles.map((role, key) => {
+        return {
+          id: key,
+          label: role.tipo_do_usuario,
+          value: role.tipo_do_usuario
+        }
+      })
+      setRoles(roles)
+    })()
+  }, [])
+
+  const onSubmit = async (payload)=> {
+    const {data} = await axios.post('/api/usuarios/create-user', payload)
+    setResult(data.message)
+    setTimeout(()=>window.location.reload(),5000)
+  }
 
   return (
-      <O.Container onSubmit={handleSubmit(onSubmit)}>
-          <Input title="Nome do Usuario" reg={{ ...register('nome') }} />
-          <Input title="Email" reg={{ ...register('email') }} />
-          <Input title="Senha" reg={{ ...register('senha') }} />
-          <Select title="Tipo do Usuario" reg={{ ...register('tipo_do_usuario') }} options={SelectData} />
-          <Button title="Criar" width="100%" icon={<BiAddToQueue />} />
-      </O.Container>
+    <O.Container onSubmit={handleSubmit(onSubmit)}>
+        {result}
+      <Input title="Nome do Usuario" reg={{ ...register('nome') }} />
+      <Input title="Email" reg={{ ...register('email') }} />
+      <Input title="Senha" reg={{ ...register('senha') }} />
+      <Select
+        title="Tipo do Usuario"
+        reg={{ ...register('tipo_do_usuario') }}
+        options={roles}
+      />
+      <Button title="Criar" width="100%" icon={<BiAddToQueue />} />
+    </O.Container>
   )
 }
 
-export default CreateUsersForm;
+export default CreateUsersForm

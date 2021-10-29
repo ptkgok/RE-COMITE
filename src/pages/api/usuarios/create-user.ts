@@ -15,5 +15,7 @@ export default async (request:VercelRequest, response:VercelResponse) => {
         }
     })
     
-    return response.json(user)
+    return response.json({
+        message: "Usuario Criado com sucesso!"
+    })
   }

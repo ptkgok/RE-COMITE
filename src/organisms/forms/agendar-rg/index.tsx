@@ -1,34 +1,34 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import RadioButton from 'atoms/radio-button'
 import Select from 'atoms/select'
 import { SelectData, SelectDataBool } from 'atoms/select/test-data'
 import TextArea from 'atoms/text-area'
-import axios from 'axios'
-import { AuthContext } from 'contexts/Authentication/AuthContext'
+import axios from 'axios' 
 import { DoubleElementsInRow } from 'layouts/common'
 import RadioButtonsGroup from 'molecules/radio-buttons-group'
 import { useForm } from 'react-hook-form'
 import { BiAbacus } from 'react-icons/bi'
-import { ScheduleRG } from 'services/utils/scheduleRG'
-
-
 import * as O from './styles'
 import { parseCookies } from 'nookies'
 
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
+  const [result, setResult] = useState('')
   const { ['@IIPM/user']: userString }: any = parseCookies()
 
   const user = JSON.parse(userString)
   const onSubmit = async (payload) => {
-    const {data} = await axios.post('/api/to-schedule-rg', payload)
-    console.log(data)
+    const {data} = await axios.post('/api/registro-geral/agendar', payload)
+    setResult(data.message)
+    setTimeout(()=>window.location.reload(),5000)
   }
+
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
+      {result}
       <O.LeftSide>
         <Input title="Nome Completo" reg={{ ...register('nome_completo') }} />
         <Input title="Nome da Mãe" reg={{ ...register('nome_da_mae') }} />
