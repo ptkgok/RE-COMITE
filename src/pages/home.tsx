@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AppLayout from 'layouts/app'
 import ListOfOptionsFeatures from 'organisms/list-of-options-features'
 import { FeaturesCardList } from 'services/utils/features-card-list'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
+import Button from 'atoms/button'
+import SnackBar from 'atoms/snackbar'
+import { NotificationContext } from 'contexts/Notification'
 
 const HomeScreen: React.FC = ({ data }: any) => {
+
+  const { ShowMessage ,setShowMessage, setMessage } = useContext(NotificationContext)
+
+  const openSnackbar = () => {
+    setShowMessage(!ShowMessage)
+    setMessage("CU TESTE CU")
+  }
+  
   return (
     <AppLayout>
+      <Button onClick={openSnackbar} title="Abrir Snackbar" />
       <ListOfOptionsFeatures list={FeaturesCardList} />
     </AppLayout>
   )

@@ -4,8 +4,9 @@ import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from 'assets/styles/global'
 import theme from 'assets/styles/theme'
-import { AuthContext, AuthProvider } from 'contexts/Authentication/AuthContext'
+import { AuthProvider } from 'contexts/Authentication/AuthContext'
 import NotificationProvider from 'contexts/Notification'
+import SnackBar from 'atoms/snackbar'
 
 
 
@@ -13,6 +14,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <AuthProvider>
       <NotificationProvider>
+        <SnackBar />
         <ThemeProvider 
         theme={theme}
         >
