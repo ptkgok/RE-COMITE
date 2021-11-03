@@ -1,7 +1,7 @@
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -81,12 +81,12 @@ model Rg {
   resolvido                    String
   observacao                   String
   usuario                      Usuario @relation(fields: [usuarioId], references: [id])
-  usuarioId String
+  usuarioId                    String
   data_de_nascimento           String
 }
 
 model Certidao {
-  id                     String   @id @default(uuid())
+  id                     String  @id @default(uuid())
   nome_completo          String
   status                 String
   nome_do_pai            String
@@ -111,8 +111,8 @@ model Certidao {
   livro                  String?
   folha                  String?
   termo                  String?
-  usuario                      Usuario @relation(fields: [usuarioId], references: [id])
-  usuarioId String
+  usuario                Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId              String
 }
 
 enum TipoDoUsuario {

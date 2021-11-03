@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { setCookie, parseCookies } from 'nookies'
+import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import Router from 'next/router'
 
 import { signInAdmRequest, signInRequest } from '../../services/auth'
@@ -13,16 +13,16 @@ export function AuthProvider({ children }) {
 
   const isAuthenticated = !!usuario
 
-  // useEffect(() => {
-  //   const { '@IIPM/token': token } = parseCookies()
-  //   const { ['@IIPM/user']: usuario } = parseCookies()
+  useEffect(() => {
+    const { '@IIPM/token': token } = parseCookies()
+    const { ['@IIPM/user']: usuario } = parseCookies()
 
-  //   if (token) {
-  //     recoverUserInformation().then(response => {
-  //       setUsuario(JSON.parse(usuario))
-  //     })
-  //   }
-  // }, [])
+    if (usuario === "undefined") {
+      setUsuario(null)
+      destroyCookie({}, '@IIPM/user')
+      destroyCookie({}, '@IIPM/token')
+    }
+  }, [])
 
   async function signIn({ email, senha }: SignInData) {
     try {
