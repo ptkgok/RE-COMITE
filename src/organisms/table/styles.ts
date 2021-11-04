@@ -73,7 +73,7 @@ export const Column = styled.div`
   width: 100%;
   text-overflow: ellipsis;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 5px;
 
@@ -86,4 +86,5 @@ export const Column = styled.div`
   color: ${theme.colors.primary};
   font-weight: 500;
   line-height: 1.5rem;
+  text-align: left;
 `

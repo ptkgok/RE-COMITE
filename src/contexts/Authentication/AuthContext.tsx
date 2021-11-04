@@ -14,7 +14,6 @@ export function AuthProvider({ children }) {
   const isAuthenticated = !!usuario
 
   useEffect(() => {
-    const { '@IIPM/token': token } = parseCookies()
     const { ['@IIPM/user']: usuario } = parseCookies()
 
     if (usuario === "undefined") {

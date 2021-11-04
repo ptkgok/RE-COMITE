@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import RadioButton from 'atoms/radio-button'
 import Select from 'atoms/select'
-import { SelectData, SelectDataBool } from 'atoms/select/test-data'
+import { SelectDataBool } from 'atoms/select/test-data'
 import TextArea from 'atoms/text-area'
 import axios from 'axios'
 import { DoubleElementsInRow } from 'layouts/common'
@@ -27,6 +27,7 @@ const ToScheduleRg: React.FC = () => {
     setTimeout(() => window.location.reload(), 5000)
   }
   const [modalOpen, setModalOpen] = useState(false)
+
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
@@ -114,14 +115,13 @@ const ToScheduleRg: React.FC = () => {
             title="Orgão Solicitante"
             type="text"
             reg={{ ...register('orgao') }}
-            defaultValue={user?.orgao?.length > 0 ? `${user.orgao}` : "Nenhum"}
-          // disabled
+            defaultValue={user?.orgao?.length > 0 ? `${user.orgao[0].nome}` : "Nenhum"}
+            // disabled
           />
           <Input
             title="Data de Solicitação"
             reg={{ ...register('data_de_solicitacao') }}
             defaultValue={new Date().toLocaleString('pt-BR').split(' ')[0]}
-            type="date"
           />
         </DoubleElementsInRow>
       </O.CenterSide>

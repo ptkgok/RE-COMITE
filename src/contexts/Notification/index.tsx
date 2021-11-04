@@ -3,7 +3,7 @@ import { INotificationProps } from './INotificationProps'
 
 export const NotificationContext = createContext( {} as INotificationProps )
 
-function NotificationProvider({ children }: any) {
+function NotificationProvider({ children }) {
 
   const [ShowMessage, setShowMessage] = useState(false)
   const [Message, setMessage] = useState()

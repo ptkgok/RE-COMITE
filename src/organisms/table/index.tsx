@@ -17,7 +17,7 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
     <S.Container>
       <S.RowHead>
         {Columns?.map((data: string, key: number) => (
-          <S.Column key={key}>{data.replaceAll('_', ' ')}</S.Column>
+          <S.Column key={key}>{data.replaceAll('_', ' ').toUpperCase()}</S.Column>
         ))}
         {data && url && <S.Column>Editar</S.Column>}
       </S.RowHead>

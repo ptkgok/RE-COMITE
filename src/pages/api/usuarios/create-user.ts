@@ -4,14 +4,17 @@ import { PrismaClient } from "@prisma/client"
 
 export default async (request:VercelRequest, response:VercelResponse) => {
 
-    const {nome, email, senha, tipo_do_usuario} = request.body
+    const {nome, email, senha, tipo_do_usuario, orgaoId} = request.body
   
     const user = await new PrismaClient().usuario.create({
         data: {
             nome,
             senha: bcrypt.hashSync(senha, 8),
             email,
-            tipo_do_usuario
+            tipo_do_usuario,
+            orgao: {
+                connect: {id: orgaoId}
+            }
         }
     })
     

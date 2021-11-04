@@ -9,6 +9,7 @@ interface Props {
   disabled?: boolean
   type?: string
   style?: any
+  onFocus?: any
 }
 
 const Input: React.FC<Props> = ({

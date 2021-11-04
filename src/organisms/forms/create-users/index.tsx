@@ -11,6 +11,7 @@ const CreateUsersForm: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
   const [roles, setRoles] = useState([{}])
+  const [orgaos,setOrgaos] = useState([])
 
   useEffect(() => {
     ;(async () => {
@@ -23,6 +24,18 @@ const CreateUsersForm: React.FC = () => {
         }
       })
       setRoles(roles)
+    })()
+
+    ;(async () => {
+      const { data } = await axios.get('/api/orgaos/listagem')
+      let orgaos = await data.orgaos.map((orgao, key) => {
+        return {
+          id: key,
+          label: orgao.nome,
+          value: orgao.id
+        }
+      })
+      setOrgaos(orgaos)
     })()
   }, [])
 
@@ -42,6 +55,11 @@ const CreateUsersForm: React.FC = () => {
         title="Tipo do Usuario"
         reg={{ ...register('tipo_do_usuario') }}
         options={roles}
+      />
+      <Select
+        title="Orgão"
+        reg={{ ...register('orgaoId') }}
+        options={orgaos}
       />
       <Button title="Criar" width="100%" icon={<BiAddToQueue />} />
     </O.Container>
