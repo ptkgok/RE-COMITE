@@ -5,9 +5,9 @@ import { Prisma } from "services/utils/prisma-client"
 export default async (request:VercelRequest, response:VercelResponse) => {
 
   const data = request.body
-  const dataFormatada = new Date(data.data)
-  
 
+  console.log(data)
+  
     try {
       const horarios = await Prisma.$queryRaw`SELECT DISTINCT * FROM Hora WHERE posto = ${data.posto}
       AND data>${data.data} AND marcado = "" ORDER BY data`;

@@ -14,7 +14,7 @@ const Select: React.FC<Props> = ({
   defaultValue,
   reg,
   options,
-  required
+  required,
 }) => {
   return (
     <S.Container>

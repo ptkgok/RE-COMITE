@@ -9,30 +9,72 @@ import axios from 'axios'
 import { DoubleElementsInRow } from 'layouts/common'
 import RadioButtonsGroup from 'molecules/radio-buttons-group'
 import { useForm } from 'react-hook-form'
-import { BiAbacus } from 'react-icons/bi'
+import { BiAbacus, BiHourglass } from 'react-icons/bi'
 import * as O from './styles'
 import { parseCookies } from 'nookies'
 import Modal from 'organisms/modal'
-import { PostosData, MotivosData, StatusData } from 'services/data/static-selects'
+import {
+  PostosData,
+  MotivosData,
+  StatusData
+} from 'services/data/static-selects'
 
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
-  const [result, setResult] = useState('')
   const { ['@IIPM/user']: userString }: any = parseCookies()
 
+  // States
+  const [modalOpen, setModalOpen] = useState(false)
+  const [result, setResult] = useState('')
+  const [datas, setDatas] = useState([])
+  const [dataEscolhida, setDataEscolhida] = useState()
+  const [postoEscolhido, setPostoEscolhido] = useState()
+  const [horas, setHoras] = useState()
+
   const user = JSON.parse(userString)
+
   const onSubmit = async (payload) => {
     const { data } = await axios.post('/api/registro-geral/agendar', payload)
     setResult(data.message)
     setTimeout(() => window.location.reload(), 5000)
   }
-  const [modalOpen, setModalOpen] = useState(false)
 
+  const pegarData = async e => {
+    const { data } = await axios.get(
+      `/api/horarios/listar-todos-horarios?=${e.target.value}`
+    )
+    setDatas(data)
+    setPostoEscolhido(e.target.value)
+  }
+
+  const pegarHorarios = async () => {
+    
+    const { data } = await axios.post('/api/horarios/listar-horarios-posto', { data: dataEscolhida, posto: postoEscolhido })
+
+    setHoras(data)
+
+  }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
       <Modal isOpen={modalOpen} closeModal={setModalOpen}>
-        CU
+        {datas ? (
+          datas.map((data,key) => (
+            <div key={key} onClick={() => {
+              setDataEscolhida(data.data)
+              setModalOpen(!modalOpen)
+              }}>
+              <h1><BiHourglass /> {data.data}</h1>
+            </div>
+          ))
+        ) : (
+          <div>
+            <h1>Não tem nenhuma data disponível.</h1>
+          </div>
+        )}
+        {
+          horas ? <div>Tem horas </div> : <div>sem horas</div>
+        }
       </Modal>
       {result}
       <O.LeftSide>
@@ -115,7 +157,9 @@ const ToScheduleRg: React.FC = () => {
             title="Orgão Solicitante"
             type="text"
             reg={{ ...register('orgao') }}
-            defaultValue={user?.orgao?.length > 0 ? `${user.orgao[0].nome}` : "Nenhum"}
+            defaultValue={
+              user?.orgao?.length > 0 ? `${user.orgao[0].nome}` : 'Nenhum'
+            }
             // disabled
           />
           <Input
@@ -142,18 +186,21 @@ const ToScheduleRg: React.FC = () => {
         <Select
           title="Local de Agendamento"
           options={PostosData}
-          reg={{ ...register('local_de_agendamento') }}
+          reg={{ ...register('local_de_agendamento'), onChange: pegarData }}
         />
         <DoubleElementsInRow>
           <Input
             title="Data de Agendamento"
             reg={{ ...register('data_de_agendamento') }}
-            onFocus={(e) => setModalOpen(!modalOpen)}
+            onFocus={e => setModalOpen(!modalOpen)}
+            type="date"
+            defaultValue={dataEscolhida}
           />
 
           <Input
             title="Hora de Agendamento"
-            reg={{ ...register('hora_do_agendamento') }}
+            type="time"
+            reg={{ ...register('hora_do_agendamento'), onClick: () => dataEscolhida ? pegarHorarios() : alert("Selecione uma data primeiro!") }}
           />
         </DoubleElementsInRow>
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
