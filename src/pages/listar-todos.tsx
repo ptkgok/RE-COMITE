@@ -1,11 +1,11 @@
 import React from 'react'
 import AppLayout from 'layouts/app'
 import { GetServerSideProps, GetStaticProps } from 'next'
-import Table from 'organisms/table'
+import Table from 'atomic/organisms/table'
 import theme from 'assets/styles/theme'
 import { GetAllRgs } from 'services/data/get-all-rgs'
 import { parseCookies } from 'nookies'
-import LoaderTables from 'molecules/loaders'
+import LoaderTables from 'atomic/molecules/loaders'
 
 const ListarTodosScreen: React.FC = ({ data }: any) => {
   return (

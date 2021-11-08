@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'atoms/button'
+import Button from 'atomic/atoms/button'
 import Router from 'next/router'
 import { destroyCookie } from 'nookies'
 import { BiDoorOpen } from 'react-icons/bi'

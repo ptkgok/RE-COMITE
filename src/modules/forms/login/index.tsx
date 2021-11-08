@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import Button from 'atoms/button'
-import Input from 'atoms/input'
+import Button from 'atomic/atoms/button'
+import Input from 'atomic/atoms/input'
 import { AuthContext } from 'contexts/Authentication/AuthContext'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'

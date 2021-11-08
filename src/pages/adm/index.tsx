@@ -1,5 +1,5 @@
 import LoginLayout from 'layouts/login';
-import FormLogin from 'organisms/forms/login';
+import FormLogin from 'modules/forms/login';
 import React from 'react';
 
 const LoginAdminScreen: React.FC = () => {

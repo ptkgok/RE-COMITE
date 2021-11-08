@@ -1,4 +1,4 @@
-import MenuItems from 'molecules/menu-items'
+import MenuItems from 'atomic/molecules/menu-items'
 import React from 'react'
 
 import * as O from './styles'

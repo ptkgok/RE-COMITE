@@ -1,5 +1,5 @@
 import AppLayout from 'layouts/app'
-import ToScheduleRg from 'organisms/forms/agendar-rg'
+import ToScheduleRg from 'modules/forms/agendar-rg'
 
 import React from 'react'
 

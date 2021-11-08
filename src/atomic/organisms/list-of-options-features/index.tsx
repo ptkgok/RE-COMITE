@@ -1,4 +1,4 @@
-import CardItems from 'molecules/card'
+import CardItems from 'atomic/molecules/card'
 import React from 'react'
 import * as S from './styles'
 

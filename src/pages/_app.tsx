@@ -6,7 +6,7 @@ import GlobalStyle from 'assets/styles/global'
 import theme from 'assets/styles/theme'
 import { AuthProvider } from 'contexts/Authentication/AuthContext'
 import NotificationProvider from 'contexts/Notification'
-import SnackBar from 'atoms/snackbar'
+import SnackBar from 'atomic/atoms/snackbar'
 
 
 

@@ -1,5 +1,5 @@
-import CardItems from 'molecules/card'
-import CardSmall from 'molecules/card-small'
+import CardItems from 'atomic/molecules/card'
+import CardSmall from 'atomic/molecules/card-small'
 import React from 'react'
 import * as S from './styles'
 

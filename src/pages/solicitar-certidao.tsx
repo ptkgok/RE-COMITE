@@ -1,5 +1,5 @@
 import AppLayout from 'layouts/app'
-import FormSolicitarCertidao from 'organisms/forms/solicitar-certidao'
+import FormSolicitarCertidao from 'modules/forms/solicitar-certidao'
 import React from 'react'
 
 const SolicitarCertidaoScreen: React.FC = () => {

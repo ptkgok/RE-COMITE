@@ -1,7 +1,7 @@
 import LoginLayout from 'layouts/login'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
-import FormLogin from 'organisms/forms/login'
+import FormLogin from 'modules/forms/login'
 import React from 'react'
 
 const IndexScreen: React.FC = () => {

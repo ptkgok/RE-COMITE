@@ -1,7 +1,7 @@
 import AppLayout from 'layouts/app';
-import LoaderTables from 'molecules/loaders';
+import LoaderTables from 'atomic/molecules/loaders';
 import { GetStaticProps } from 'next';
-import Table from 'organisms/table';
+import Table from 'atomic/organisms/table';
 import React from 'react';
 import { GetAllHistoric } from 'services/data/get-all-historic';
 

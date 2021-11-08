@@ -1,5 +1,5 @@
-import Header from 'organisms/header'
-import Menu from 'organisms/menu'
+import Header from 'atomic/organisms/header'
+import Menu from 'atomic/organisms/menu'
 import React, { ReactNode } from 'react'
 
 import * as S from './styles'

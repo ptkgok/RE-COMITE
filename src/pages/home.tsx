@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import AppLayout from 'layouts/app'
-import ListOfOptionsFeatures from 'organisms/list-of-options-features'
+import ListOfOptionsFeatures from 'atomic/organisms/list-of-options-features'
 import { FeaturesCardList } from 'services/utils/features-card-list'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'

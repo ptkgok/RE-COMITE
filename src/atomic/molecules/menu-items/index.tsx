@@ -1,4 +1,4 @@
-import { MenuButton } from 'atoms/menu-buttons'
+import { MenuButton } from 'atomic/atoms/menu-buttons'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { MenuOptions } from 'services/utils/menu-object'

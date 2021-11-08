@@ -1,8 +1,8 @@
 import axios from 'axios'
 import AppLayout from 'layouts/app'
 import { DoubleElementsInRow, Column } from 'layouts/common'
-import CriarOrgaosForm from 'organisms/forms/criar-orgaos'
-import Table from 'organisms/table'
+import CriarOrgaosForm from 'modules/forms/criar-orgaos'
+import Table from 'atomic/organisms/table'
 import React, { useEffect, useState } from 'react'
 
 const ManageOrgansScreen: React.FC = () => {
