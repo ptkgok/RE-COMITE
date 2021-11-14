@@ -1,14 +1,10 @@
 import React, { useContext } from 'react'
-import Button from 'atoms/button'
-import Input from 'atoms/input'
-import Select from 'atoms/select'
-import TextArea from 'atoms/text-area'
+import { Button, Input, Select, TextArea } from 'atoms'
 import axios from 'axios'
 import { DoubleElementsInRow } from 'layouts/common'
 import { useForm } from 'react-hook-form'
 import { BiSend } from 'react-icons/bi'
 import * as O from '../left-center-right'
-
 import { AuthContext } from 'contexts/Authentication/AuthContext'
 
 const FormSolicitarCertidao: React.FC = () => {
@@ -17,7 +13,7 @@ const FormSolicitarCertidao: React.FC = () => {
 
 
   const onSubmit = async (payload) => {
-    const {data} = await axios.post('/api/require-certificate', payload)
+    const { data } = await axios.post('/api/require-certificate', payload)
     console.log(data)
   }
 
@@ -28,7 +24,7 @@ const FormSolicitarCertidao: React.FC = () => {
         <Input title="Nome da Mãe" reg={{ ...register('nome_da_mae') }} required />
         <Input title="Nome do Pai" reg={{ ...register('nome_do_pai') }} required />
         <DoubleElementsInRow>
-          <Input title="CPF" reg={{ ...register('cpf') }}  />
+          <Input title="CPF" reg={{ ...register('cpf') }} />
           <Input title="RG" reg={{ ...register('rg') }} />
         </DoubleElementsInRow>
       </O.LeftSide>
@@ -37,7 +33,7 @@ const FormSolicitarCertidao: React.FC = () => {
           <Input
             title="Orgão Solicitante"
             reg={{ ...register('orgao') }}
-            defaultValue={user?.orgao?.length > 0 ?`${user.orgao}` : "Nenhum" }
+            defaultValue={user?.orgao?.length > 0 ? `${user.orgao}` : "Nenhum"}
           />
           <Input
             title="Data de Solicitação"
@@ -50,15 +46,15 @@ const FormSolicitarCertidao: React.FC = () => {
           reg={{ ...register('email_do_solicitante') }}
         />
         <DoubleElementsInRow>
-        <Select 
-          title="Status"
-          reg={{ ...register('status') }}
-          options={[{ id: 1, label: "Solicitado", value: "Solicitado" }]}
-        />
-        <Input
-          title="Data de Nascimento"
-          reg={{ ...register('data_de_nascimento') }}
-        />
+          <Select
+            title="Status"
+            reg={{ ...register('status') }}
+            options={[{ id: 1, label: "Solicitado", value: "Solicitado" }]}
+          />
+          <Input
+            title="Data de Nascimento"
+            reg={{ ...register('data_de_nascimento') }}
+          />
         </DoubleElementsInRow>
         <DoubleElementsInRow>
           <Input
@@ -76,11 +72,11 @@ const FormSolicitarCertidao: React.FC = () => {
         <Input title="Telefone" reg={{ ...register('contato') }} />
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
         <Input
-            title="Usuario"
-            reg={{ ...register('usuarioId') }}
-            defaultValue={`${user?.id}`}
-            style={{ display: 'none' }}
-          />
+          title="Usuario"
+          reg={{ ...register('usuarioId') }}
+          defaultValue={`${user?.id}`}
+          style={{ display: 'none' }}
+        />
         <Button title="Enviar" height="40px" width="100%" icon={<BiSend />} />
       </O.RightSide>
     </O.Container>

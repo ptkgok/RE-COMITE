@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import Router from 'next/router'
 
-import { signInAdmRequest, signInRequest } from '../../services/auth'
-import { api } from '../../services/api'
+import { signInAdmRequest, signInRequest } from 'services/auth'
+import { api } from 'services/api'
 import { AuthContextType, SignInData } from './Types'
 
 export const AuthContext = createContext({} as AuthContextType)

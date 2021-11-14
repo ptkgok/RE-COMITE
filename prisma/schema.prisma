@@ -41,7 +41,7 @@ model Horario {
   dia     Int
   dianome String   @db.VarChar(20)
   data    DateTime @db.Date
-  hora    DateTime @db.Time(0)
+  hora    String
   marcado String   @db.VarChar(3)
 }
 

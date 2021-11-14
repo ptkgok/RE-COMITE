@@ -11,15 +11,15 @@ const CriarOrgaosForm: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
 
-  const onSubmit = async (payload)=> {
-    const {data} = await axios.post('/api/orgaos/criar-orgao', payload)
+  const onSubmit = async (payload) => {
+    const { data } = await axios.post('/api/orgaos/criar-orgao', payload)
     setResult(data.message)
-    setTimeout(()=>window.location.reload(),5000)
+    setTimeout(() => window.location.reload(), 5000)
   }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
-        {result}
+      {result}
       <Input title="Nome do Posto" reg={{ ...register('nome') }} />
       <Input title="Email do Posto" reg={{ ...register('email') }} />
       <Input title="Telefone do Posto" reg={{ ...register('telefone') }} />

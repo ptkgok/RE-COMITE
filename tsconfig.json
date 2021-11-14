@@ -18,6 +18,26 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": "src",
+    "paths": {
+      "@atoms/*": [
+        "atoms/*"
+      ],
+      "@molecules/*": [
+        "molecules/*"
+      ],
+      "@organisms/*": [
+        "organisms/*"
+      ],
+      "@layouts/*": [
+        "layouts/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+    }
   },
   "include": [
     "next-env.d.ts",

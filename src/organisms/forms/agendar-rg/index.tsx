@@ -12,12 +12,14 @@ import { useForm } from 'react-hook-form'
 import { BiAbacus, BiHourglass } from 'react-icons/bi'
 import * as O from './styles'
 import { parseCookies } from 'nookies'
-import Modal from 'organisms/modal'
+
 import {
   PostosData,
   MotivosData,
   StatusData
 } from 'services/data/static-selects'
+import { Modal } from 'organisms'
+import moment from 'moment'
 
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
@@ -48,7 +50,7 @@ const ToScheduleRg: React.FC = () => {
   }
 
   const pegarHorarios = async () => {
-    
+
     const { data } = await axios.post('/api/horarios/listar-horarios-posto', { data: dataEscolhida, posto: postoEscolhido })
 
     setHoras(data)
@@ -59,11 +61,11 @@ const ToScheduleRg: React.FC = () => {
     <O.Container onSubmit={handleSubmit(onSubmit)}>
       <Modal isOpen={modalOpen} closeModal={setModalOpen}>
         {datas ? (
-          datas.map((data,key) => (
+          datas.map((data, key) => (
             <div key={key} onClick={() => {
               setDataEscolhida(data.data)
               setModalOpen(!modalOpen)
-              }}>
+            }}>
               <h1><BiHourglass /> {data.data}</h1>
             </div>
           ))
@@ -160,7 +162,7 @@ const ToScheduleRg: React.FC = () => {
             defaultValue={
               user?.orgao?.length > 0 ? `${user.orgao[0].nome}` : 'Nenhum'
             }
-            // disabled
+          // disabled
           />
           <Input
             title="Data de Solicitação"
@@ -193,13 +195,11 @@ const ToScheduleRg: React.FC = () => {
             title="Data de Agendamento"
             reg={{ ...register('data_de_agendamento') }}
             onFocus={e => setModalOpen(!modalOpen)}
-            type="date"
             defaultValue={dataEscolhida}
           />
 
           <Input
             title="Hora de Agendamento"
-            type="time"
             reg={{ ...register('hora_do_agendamento'), onClick: () => dataEscolhida ? pegarHorarios() : alert("Selecione uma data primeiro!") }}
           />
         </DoubleElementsInRow>

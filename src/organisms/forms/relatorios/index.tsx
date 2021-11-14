@@ -1,7 +1,6 @@
-import Button from 'atoms/button'
-import Input from 'atoms/input'
-import Select from 'atoms/select'
-import { SelectData } from 'atoms/select/test-data'
+import { Button, Input, Select } from 'atoms'
+
+import { SelectData } from '@atoms/select/test-data'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiAbacus, BiArrowBack } from 'react-icons/bi'
