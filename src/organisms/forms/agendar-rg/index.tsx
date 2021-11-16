@@ -200,7 +200,10 @@ const ToScheduleRg: React.FC = () => {
 
           <Input
             title="Hora de Agendamento"
-            reg={{ ...register('hora_do_agendamento'), onClick: () => dataEscolhida ? pegarHorarios() : alert("Selecione uma data primeiro!") }}
+            reg={{
+              ...register('hora_do_agendamento'),
+              onClick: () => dataEscolhida ? pegarHorarios() : alert("Selecione uma data primeiro!")
+            }}
           />
         </DoubleElementsInRow>
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
