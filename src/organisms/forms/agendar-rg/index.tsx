@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Button from 'atoms/button'
-import Input from 'atoms/input'
-import RadioButton from 'atoms/radio-button'
-import Select from 'atoms/select'
+import { Button, Input, RadioButton, Select, TextArea } from 'atoms'
 import { SelectDataBool } from 'atoms/select/test-data'
-import TextArea from 'atoms/text-area'
 import axios from 'axios'
 import { DoubleElementsInRow } from 'layouts/common'
 import RadioButtonsGroup from 'molecules/radio-buttons-group'
@@ -12,14 +8,13 @@ import { useForm } from 'react-hook-form'
 import { BiAbacus, BiHourglass } from 'react-icons/bi'
 import * as O from './styles'
 import { parseCookies } from 'nookies'
-
 import {
   PostosData,
   MotivosData,
   StatusData
 } from 'services/data/static-selects'
 import { Modal } from 'organisms'
-import moment from 'moment'
+
 
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
@@ -36,6 +31,7 @@ const ToScheduleRg: React.FC = () => {
   const user = JSON.parse(userString)
 
   const onSubmit = async (payload) => {
+    payload['data_de_agendamento'] = new Date(payload['data_de_agendamento'])
     const { data } = await axios.post('/api/registro-geral/agendar', payload)
     setResult(data.message)
     setTimeout(() => window.location.reload(), 5000)
@@ -49,14 +45,6 @@ const ToScheduleRg: React.FC = () => {
     setPostoEscolhido(e.target.value)
   }
 
-  const pegarHorarios = async () => {
-
-    const { data } = await axios.post('/api/horarios/listar-horarios-posto', { data: dataEscolhida, posto: postoEscolhido })
-
-    setHoras(data)
-
-  }
-
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
       <Modal isOpen={modalOpen} closeModal={setModalOpen}>
@@ -65,8 +53,9 @@ const ToScheduleRg: React.FC = () => {
             <div key={key} onClick={() => {
               setDataEscolhida(data.data)
               setModalOpen(!modalOpen)
+              setHoras(data.hora)
             }}>
-              <h1><BiHourglass /> {data.data}</h1>
+              <h1><BiHourglass /> {new Date(data.data).toLocaleString('pt-BR').split(' ')[0]} às {data.hora}</h1>
             </div>
           ))
         ) : (
@@ -195,15 +184,16 @@ const ToScheduleRg: React.FC = () => {
             title="Data de Agendamento"
             reg={{ ...register('data_de_agendamento') }}
             onFocus={e => setModalOpen(!modalOpen)}
-            defaultValue={dataEscolhida}
+            defaultValue={new Date(dataEscolhida).toLocaleString('pt-BR').split(' ')[0]}
           />
 
           <Input
             title="Hora de Agendamento"
             reg={{
               ...register('hora_do_agendamento'),
-              onClick: () => dataEscolhida ? pegarHorarios() : alert("Selecione uma data primeiro!")
+              onClick: () => !dataEscolhida && alert("Selecione uma data primeiro!"),
             }}
+            defaultValue={horas}
           />
         </DoubleElementsInRow>
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
