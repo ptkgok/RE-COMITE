@@ -19,6 +19,6 @@ export const PostosData = [
 ];
 
 export const StatusData = [
-  { id: 1, titulo: "Agendamento p/ interior" },
-  { id: 2, titulo: "Agendamento Presencial" },
+  { id: 1, label: "Agendamento p/ interior" },
+  { id: 2, label: "Agendamento Presencial" },
 ];

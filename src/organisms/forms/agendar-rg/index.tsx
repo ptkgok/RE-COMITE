@@ -15,7 +15,6 @@ import {
 } from 'services/data/static-selects'
 import { Modal } from 'organisms'
 
-
 const ToScheduleRg: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const { ['@IIPM/user']: userString }: any = parseCookies()
@@ -24,17 +23,22 @@ const ToScheduleRg: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [result, setResult] = useState('')
   const [datas, setDatas] = useState([])
-  const [dataEscolhida, setDataEscolhida] = useState()
-  const [postoEscolhido, setPostoEscolhido] = useState()
-  const [horas, setHoras] = useState()
+  const [dataEscolhida, setDataEscolhida] = useState('')
+  const [horas, setHoras] = useState('')
 
-  const user = JSON.parse(userString)
+  const user = userString ? JSON.parse(userString) : null
 
   const onSubmit = async (payload) => {
-    payload['data_de_agendamento'] = new Date(payload['data_de_agendamento'])
-    const { data } = await axios.post('/api/registro-geral/agendar', payload)
-    setResult(data.message)
-    setTimeout(() => window.location.reload(), 5000)
+    try {
+      payload['data_de_agendamento'] = new Date(dataEscolhida)
+      payload['hora_do_agendamento'] = horas
+      
+      const { data } = await axios.post('/api/registro-geral/agendar', payload)
+      setResult(data.message)
+      setTimeout(() => window.location.reload(), 5000)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const pegarData = async e => {
@@ -42,7 +46,6 @@ const ToScheduleRg: React.FC = () => {
       `/api/horarios/listar-todos-horarios?=${e.target.value}`
     )
     setDatas(data)
-    setPostoEscolhido(e.target.value)
   }
 
   return (
@@ -184,23 +187,23 @@ const ToScheduleRg: React.FC = () => {
             title="Data de Agendamento"
             reg={{ ...register('data_de_agendamento') }}
             onFocus={e => setModalOpen(!modalOpen)}
-            defaultValue={new Date(dataEscolhida).toLocaleString('pt-BR').split(' ')[0]}
+            value={dataEscolhida}
           />
 
           <Input
             title="Hora de Agendamento"
             reg={{
               ...register('hora_do_agendamento'),
-              onClick: () => !dataEscolhida && alert("Selecione uma data primeiro!"),
+              onClick: () => !dataEscolhida && alert("Selecione uma data primeiro!")
             }}
-            defaultValue={horas}
+            value={horas}
           />
         </DoubleElementsInRow>
         <TextArea title="Observação" reg={{ ...register('observacao') }} />
         <Input
           title="Usuario"
           reg={{ ...register('usuarioId') }}
-          defaultValue={`${user.id}`}
+          defaultValue={`${user?.id}`}
           style={{ display: 'none' }}
         />
         <Button title="Enviar" height="40px" width="100%" icon={<BiAbacus />} />

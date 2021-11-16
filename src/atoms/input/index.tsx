@@ -10,11 +10,13 @@ interface Props {
   type?: string
   style?: any
   onFocus?: any
+  value?: any
 }
 
 const Input: React.FC<Props> = ({
   title,
   defaultValue,
+  value,
   reg,
   required,
   disabled,
@@ -26,6 +28,7 @@ const Input: React.FC<Props> = ({
       <S.Label htmlFor={title}>{title}</S.Label>
       <S.Field
         id={title}
+        value={value}
         defaultValue={defaultValue}
         {...reg}
         required={required}
