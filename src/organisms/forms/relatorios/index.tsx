@@ -1,23 +1,32 @@
 import { Button, Input, Select } from 'atoms'
-
 import { SelectData } from '@atoms/select/test-data'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BiAbacus, BiArrowBack } from 'react-icons/bi'
-
 import * as O from './styles'
+import axios from 'axios'
+import { StatusData } from '@services/data/static-selects'
+import { FormEvent } from 'hoist-non-react-statics/node_modules/@types/react'
+
 
 const Relatorios: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
-  console.log(result)
-  const onSubmit = data => setResult(data)
-
   const [option, setOption] = useState(0)
+  
+  const onSubmit = async (payload) => {
+    payload.preventDefault()
+    console.log(payload)
+    const data = await axios.post('/api/reports/report-scheduling',payload)
+    console.log(data)
+  }
+
 
   return (
     <>
       <O.Container_Centralize>
+        {/* <button type="button" onClick={() => window.open('/api/reports/generate-report',"_blank")}>Chamar Relatório</button> */}
+
         {option === 0 && (
           <>
             <Button
@@ -53,7 +62,7 @@ const Relatorios: React.FC = () => {
             <Select
               title="Status"
               reg={{ ...register('status') }}
-              options={SelectData}
+              options={StatusData}
             />
             <Input title="Orgao Solicitante" reg={{ ...register('orgao') }} />
             <Input
@@ -120,16 +129,18 @@ const Relatorios: React.FC = () => {
             <Select
               title="Status"
               reg={{ ...register('status') }}
-              options={SelectData}
+              options={StatusData}
             />
-            <Input title="Orgao Solicitante" reg={{ ...register('orgao') }} />
+            <Input title="Local de agendamento" reg={{ ...register('local_de_agendamento') }} />
             <Input
               title="Data de Agendamento Inicial"
               reg={{ ...register('data_de_solicitaçao_inicial') }}
+              type="date"
             />
             <Input
               title="Data de Agendamento Final"
               reg={{ ...register('data_de_solicitaçao_final') }}
+              type="date"
             />
             <Button
               title="Enviar"
