@@ -14,7 +14,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         AND: [
           { posto: data.posto },
           { data: { gt: data.data } },
-          { marcado: "" }
+          { marcado: "nao" }
         ]
       },
       orderBy: { data: 'asc' }

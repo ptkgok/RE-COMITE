@@ -1,7 +1,7 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -54,7 +54,7 @@ model Historicos {
 }
 
 model Rg {
-  id                           String  @id @default(uuid())
+  id                           String   @id @default(uuid())
   nome_completo                String
   nome_do_pai                  String
   nome_da_mae                  String
@@ -62,7 +62,7 @@ model Rg {
   rg                           String
   orgao                        String
   motivo                       String
-  data_de_solicitacao          String
+  data_de_solicitacao          DateTime @db.Date
   cidadao_sabe_cpf             String
   cidadao_em_posse_da_certidao String
   contato                      String
@@ -76,17 +76,17 @@ model Rg {
   cep                          String
   status                       String
   local_de_agendamento         String
-  data_de_agendamento          String
+  data_de_agendamento          DateTime @db.Date
   hora_do_agendamento          String
   resolvido                    String
   observacao                   String
-  usuario                      Usuario @relation(fields: [usuarioId], references: [id])
+  usuario                      Usuario  @relation(fields: [usuarioId], references: [id])
   usuarioId                    String
-  data_de_nascimento           String
+  data_de_nascimento           DateTime @db.Date
 }
 
 model Certidao {
-  id                     String  @id @default(uuid())
+  id                     String   @id @default(uuid())
   nome_completo          String
   status                 String
   nome_do_pai            String
@@ -99,11 +99,11 @@ model Certidao {
   contato                String
   estado_de_naturalidade String
   cidade_de_naturalidade String
-  data_de_nascimento     String?
-  data_de_solicitacao    String?
+  data_de_nascimento     DateTime @db.Date
+  data_de_solicitacao    DateTime @db.Date
   tipo_de_certidao       String?
-  data_de_registro       String?
-  data_da_certidao       String?
+  data_de_registro       DateTime @db.Date
+  data_da_certidao       DateTime @db.Date
   resposta               String?
   estado_de_registro     String?
   comarca                String?
@@ -111,7 +111,7 @@ model Certidao {
   livro                  String?
   folha                  String?
   termo                  String?
-  usuario                Usuario @relation(fields: [usuarioId], references: [id])
+  usuario                Usuario  @relation(fields: [usuarioId], references: [id])
   usuarioId              String
 }
 

@@ -15,9 +15,9 @@ const Relatorios: React.FC = () => {
   const [option, setOption] = useState(0)
   
   const onSubmit = async (payload) => {
-    payload.preventDefault()
-    console.log(payload)
-    const data = await axios.post('/api/reports/report-scheduling',payload)
+    payload['data_de_solicitaçao_inicial'] = new Date(payload['data_de_solicitaçao_inicial'])
+    payload['data_de_solicitaçao_final'] = new Date(payload['data_de_solicitaçao_final'])
+    const {data} = await axios.post('/api/reports/report-scheduling',payload)
     console.log(data)
   }
 

@@ -30,12 +30,12 @@ const ToScheduleRg: React.FC = () => {
 
   const onSubmit = async (payload) => {
     try {
-      payload['data_de_agendamento'] = new Date(dataEscolhida)
+      payload['data_de_agendamento'] = dataEscolhida
       payload['hora_do_agendamento'] = horas
       
       const { data } = await axios.post('/api/registro-geral/agendar', payload)
-      setResult(data.message)
-      setTimeout(() => window.location.reload(), 5000)
+      // setResult(data)
+      // setTimeout(() => window.location.reload(), 5000)
     } catch (error) {
       console.log(error)
     }
