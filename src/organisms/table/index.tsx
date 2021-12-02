@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChooseColumns } from 'services/utils/choose-data-table'
+import { ChooseColumns } from 'services/utils/tables-methods/choose-columns'
 
 import * as S from './styles'
 
@@ -17,14 +17,18 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
     <S.Container>
       <S.RowHead>
         {Columns?.map((data: string, key: number) => (
-          <S.Column key={key}>{data.replaceAll('_', ' ').toUpperCase()}</S.Column>
+          <S.Column key={key}>
+            {data.replaceAll('_', ' ').toUpperCase()}
+          </S.Column>
         ))}
         {data && url && <S.Column>Editar</S.Column>}
       </S.RowHead>
-      {data?.map((row,key) => (
+      {data?.map((row, key) => (
         <S.Row key={key}>
           {Columns.map((column: string, key: number) => (
-            <S.Column key={key}>{row[column] || new Date(row[column])}</S.Column>
+            <S.Column key={key}>
+              {row[column] || new Date(row[column])}
+            </S.Column>
           ))}
           {data && url && (
             <S.Column>

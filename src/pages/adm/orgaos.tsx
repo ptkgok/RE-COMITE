@@ -10,7 +10,7 @@ const ManageOrgansScreen: React.FC = () => {
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await axios.get('/api/orgaos/listagem')
+      const { data } = await axios.get('/api/orgs/list-all')
       setOrgaos(data.orgaos)
     })()
   }, [])

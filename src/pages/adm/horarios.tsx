@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import AppLayout from '@layouts/app';
-import { DoubleElementsInRow, Column } from '@layouts/common';
-import { CriarOrgaosForm, Table } from 'organisms';
-import axios from 'axios';
-import AddHoursForm from '@organisms/forms/adicionar-horarios';
-
+import React, { useEffect, useState } from 'react'
+import AppLayout from '@layouts/app'
+import { DoubleElementsInRow, Column } from '@layouts/common'
+import { CriarOrgaosForm, Table } from 'organisms'
+import axios from 'axios'
+import AddHoursForm from '@organisms/forms/adicionar-horarios'
 
 const ManageHoursScreen: React.FC = () => {
   const [hours, setHours] = useState([])
   console.log(hours)
 
   useEffect(() => {
-    ; (async () => {
-      const { data } = await axios.get('/api/horarios/list-all')
+    ;(async () => {
+      const { data } = await axios.get('/api/hours/list-all')
       setHours(data)
     })()
   }, [])
@@ -33,4 +32,4 @@ const ManageHoursScreen: React.FC = () => {
   )
 }
 
-export default ManageHoursScreen;
+export default ManageHoursScreen

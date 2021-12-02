@@ -1,6 +1,6 @@
 interface INotificationProps {
-  ShowMessage: any
-  setShowMessage: any
+  ShowMessage: boolean
+  setShowMessage: (value: boolean) => void
   Message: any
   setMessage: any
   Icon?: any

@@ -11,8 +11,8 @@ const AddHoursForm: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
 
-  const onSubmit = async (payload) => {
-    const { data } = await axios.post('/api/horarios/add-hour', payload)
+  const onSubmit = async payload => {
+    const { data } = await axios.post('/api/hours/add-hour', payload)
     setResult(data.message)
     setTimeout(() => window.location.reload(), 5000)
   }

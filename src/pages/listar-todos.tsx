@@ -13,7 +13,6 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
       <h3 style={{ marginBottom: 15, color: theme.colors.primary }}>
         Listagem de Solicitações registradas
       </h3>
-      {console.log(data.length)}
       {data.length > 0 ? (
         <Table
           data={data}

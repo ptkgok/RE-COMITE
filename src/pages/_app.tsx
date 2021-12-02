@@ -8,20 +8,13 @@ import { AuthProvider } from 'contexts/Authentication/AuthContext'
 import NotificationProvider from 'contexts/Notification'
 import SnackBar from 'atoms/snackbar'
 
-
-
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <AuthProvider>
       <NotificationProvider>
         <SnackBar />
-        <ThemeProvider 
-        theme={theme}
-        >
-          
-          <Component 
-          {...pageProps} 
-          />
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
           <GlobalStyle />
         </ThemeProvider>
       </NotificationProvider>

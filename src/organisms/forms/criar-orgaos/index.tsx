@@ -11,8 +11,8 @@ const CriarOrgaosForm: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
 
-  const onSubmit = async (payload) => {
-    const { data } = await axios.post('/api/orgaos/criar-orgao', payload)
+  const onSubmit = async payload => {
+    const { data } = await axios.post('/api/orgs/create-org', payload)
     setResult(data.message)
     setTimeout(() => window.location.reload(), 5000)
   }

@@ -9,7 +9,7 @@ export async function signInRequest(data: SignInRequestData) {
   try {
     const {
       data: { usuario, token }
-    } = await axios.post('api/usuarios/authentication', data)
+    } = await axios.post('api/users/authentication', data)
 
     return {
       token,
@@ -22,7 +22,9 @@ export async function signInRequest(data: SignInRequestData) {
 
 export async function signInAdmRequest(data: SignInRequestData) {
   try {
-    const { data: { usuario, token } } = await axios.post('api/usuarios/authentication-adm', data)
+    const {
+      data: { usuario, token }
+    } = await axios.post('api/users/authentication-adm', data)
 
     return { token, usuario }
   } catch (error) {

@@ -1,10 +1,11 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import Router from 'next/router'
 
 import { signInAdmRequest, signInRequest } from 'services/auth'
 import { api } from 'services/api'
 import { AuthContextType, SignInData } from './Types'
+import { NotificationContext } from 'contexts/Notification'
 
 export const AuthContext = createContext({} as AuthContextType)
 
@@ -16,7 +17,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const { ['@IIPM/user']: usuario } = parseCookies()
 
-    if (usuario === "undefined") {
+    if (usuario === 'undefined') {
       setUsuario(null)
       destroyCookie({}, '@IIPM/user')
       destroyCookie({}, '@IIPM/token')

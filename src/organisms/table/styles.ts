@@ -76,7 +76,8 @@ export const Column = styled.div`
   justify-content: left;
   align-items: center;
   padding: 5px;
-
+  overflow: hidden;
+  white-space: nowrap;
   top: 0;
   left: 0;
   z-index: 2;

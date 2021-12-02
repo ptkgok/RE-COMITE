@@ -28,22 +28,28 @@ const ToScheduleRg: React.FC = () => {
 
   const user = userString ? JSON.parse(userString) : null
 
-  const onSubmit = async (payload) => {
+  const onSubmit = async payload => {
+    const { data_de_nascimento, data_de_solicitacao } = payload
+    payload.data_de_agendamento = new Date(dataEscolhida)
+    payload.data_de_nascimento = new Date(data_de_nascimento)
+    payload.data_de_solicitacao = new Date(data_de_solicitacao)
+    payload.hora_do_agendamento = horas
+
     try {
-      payload['data_de_agendamento'] = dataEscolhida
-      payload['hora_do_agendamento'] = horas
-      
-      const { data } = await axios.post('/api/registro-geral/agendar', payload)
-      // setResult(data)
-      // setTimeout(() => window.location.reload(), 5000)
+      const { data } = await axios.post(
+        '/api/general-registers/schedule',
+        payload
+      )
+      setResult(data)
+      setTimeout(() => window.location.reload(), 5000)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const pegarData = async e => {
+  async function GetData(e) {
     const { data } = await axios.get(
-      `/api/horarios/listar-todos-horarios?=${e.target.value}`
+      `/api/hours/list-all-hours?posto=${e.target.value}`
     )
     setDatas(data)
   }
@@ -53,12 +59,21 @@ const ToScheduleRg: React.FC = () => {
       <Modal isOpen={modalOpen} closeModal={setModalOpen}>
         {datas ? (
           datas.map((data, key) => (
-            <div key={key} onClick={() => {
-              setDataEscolhida(data.data)
-              setModalOpen(!modalOpen)
-              setHoras(data.hora)
-            }}>
-              <h1><BiHourglass /> {new Date(data.data).toLocaleString('pt-BR').split(' ')[0]} às {data.hora}</h1>
+            <div
+              key={key}
+              onClick={() => {
+                setDataEscolhida(data.data)
+                setModalOpen(!modalOpen)
+                setHoras(data.hora)
+              }}
+            >
+              <Button
+                icon={<BiHourglass />}
+                title={`${
+                  new Date(data.data).toLocaleString('pt-BR').split(' ')[0]
+                } às
+                ${data.hora}`}
+              />
             </div>
           ))
         ) : (
@@ -66,9 +81,6 @@ const ToScheduleRg: React.FC = () => {
             <h1>Não tem nenhuma data disponível.</h1>
           </div>
         )}
-        {
-          horas ? <div>Tem horas </div> : <div>sem horas</div>
-        }
       </Modal>
       {result}
       <O.LeftSide>
@@ -154,12 +166,12 @@ const ToScheduleRg: React.FC = () => {
             defaultValue={
               user?.orgao?.length > 0 ? `${user.orgao[0].nome}` : 'Nenhum'
             }
-          // disabled
+            // disabled
           />
           <Input
             title="Data de Solicitação"
             reg={{ ...register('data_de_solicitacao') }}
-            defaultValue={new Date().toLocaleString('pt-BR').split(' ')[0]}
+            defaultValue={new Date().toISOString().split('T')[0]}
           />
         </DoubleElementsInRow>
       </O.CenterSide>
@@ -180,23 +192,29 @@ const ToScheduleRg: React.FC = () => {
         <Select
           title="Local de Agendamento"
           options={PostosData}
-          reg={{ ...register('local_de_agendamento'), onChange: pegarData }}
+          reg={{
+            ...register('local_de_agendamento')
+          }}
+          onChange={e => GetData(e)}
         />
         <DoubleElementsInRow>
           <Input
             title="Data de Agendamento"
             reg={{ ...register('data_de_agendamento') }}
-            onFocus={e => setModalOpen(!modalOpen)}
+            onFocus={() => setModalOpen(!modalOpen)}
             value={dataEscolhida}
+            defaultValue={dataEscolhida}
           />
 
           <Input
             title="Hora de Agendamento"
             reg={{
               ...register('hora_do_agendamento'),
-              onClick: () => !dataEscolhida && alert("Selecione uma data primeiro!")
+              onClick: () =>
+                !dataEscolhida && alert('Selecione uma data primeiro!')
             }}
             value={horas}
+            defaultValue={horas}
           />
         </DoubleElementsInRow>
         <TextArea title="Observação" reg={{ ...register('observacao') }} />

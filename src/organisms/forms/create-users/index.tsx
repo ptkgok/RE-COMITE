@@ -1,3 +1,4 @@
+import { rolesOfUsers } from '@services/utils/static/roles-users'
 import Button from 'atoms/button'
 import Input from 'atoms/input'
 import Select from 'atoms/select'
@@ -10,24 +11,11 @@ import * as O from './styles'
 const CreateUsersForm: React.FC = () => {
   const { register, handleSubmit } = useForm()
   const [result, setResult] = useState('')
-  const [roles, setRoles] = useState([{}])
-  const [orgaos,setOrgaos] = useState([])
+  const [orgaos, setOrgaos] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await axios.get('/api/usuarios/roles-users')
-      let roles = await data.roles.map((role, key) => {
-        return {
-          id: key,
-          label: role.tipo_do_usuario,
-          value: role.tipo_do_usuario
-        }
-      })
-      setRoles(roles)
-    })()
-
-    ;(async () => {
-      const { data } = await axios.get('/api/orgaos/listagem')
+      const { data } = await axios.get('/api/orgs/list-all')
       let orgaos = await data.orgaos.map((orgao, key) => {
         return {
           id: key,
@@ -39,28 +27,24 @@ const CreateUsersForm: React.FC = () => {
     })()
   }, [])
 
-  const onSubmit = async (payload)=> {
-    const {data} = await axios.post('/api/usuarios/create-user', payload)
+  const onSubmit = async payload => {
+    const { data } = await axios.post('/api/users/create-user', payload)
     setResult(data.message)
-    setTimeout(()=>window.location.reload(),5000)
+    setTimeout(() => window.location.reload(), 5000)
   }
 
   return (
     <O.Container onSubmit={handleSubmit(onSubmit)}>
-        {result}
+      {result}
       <Input title="Nome do Usuario" reg={{ ...register('nome') }} />
       <Input title="Email" reg={{ ...register('email') }} />
       <Input title="Senha" reg={{ ...register('senha') }} />
       <Select
         title="Tipo do Usuario"
         reg={{ ...register('tipo_do_usuario') }}
-        options={roles}
+        options={rolesOfUsers}
       />
-      <Select
-        title="Orgão"
-        reg={{ ...register('orgaoId') }}
-        options={orgaos}
-      />
+      <Select title="Orgão" reg={{ ...register('orgaoId') }} options={orgaos} />
       <Button title="Criar" width="100%" icon={<BiAddToQueue />} />
     </O.Container>
   )

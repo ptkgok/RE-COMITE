@@ -1,9 +1,12 @@
-import { TitleOfSection } from 'atoms/title-section';
-import AppLayout from 'layouts/app';
-import ListOfOptionsFeatures from 'organisms/list-of-options-features';
-import ListOfOptionsFeaturesSmallCard from 'organisms/list-of-options-features-small-card';
-import React from 'react';
-import { FeaturesCardList, FeaturesCardListAdm } from 'services/utils/features-card-list-adm';
+import { TitleOfSection } from 'atoms/title-section'
+import AppLayout from 'layouts/app'
+import ListOfOptionsFeatures from 'organisms/list-of-options-features'
+import ListOfOptionsFeaturesSmallCard from 'organisms/list-of-options-features-small-card'
+import React from 'react'
+import {
+  FeaturesCardList,
+  FeaturesCardListAdm
+} from 'services/utils/cards/features-card-list-adm'
 
 const HomeAdminScreen: React.FC = () => {
   return (
@@ -16,4 +19,4 @@ const HomeAdminScreen: React.FC = () => {
   )
 }
 
-export default HomeAdminScreen;
+export default HomeAdminScreen

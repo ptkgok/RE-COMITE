@@ -11,12 +11,12 @@ import { DoubleElementsInRow } from 'layouts/common'
 import { Column } from 'assets/styles/grids'
 
 const GerenciarUsuarios: React.FC = () => {
-  const [usuarios, setUsuarios] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await axios.get('/api/usuarios/listar-usuarios')
-      setUsuarios(data.usuarios)
+      const { data } = await axios.get('/api/users/list-users')
+      setUsers(data.usuarios)
     })()
   }, [])
 
@@ -28,11 +28,8 @@ const GerenciarUsuarios: React.FC = () => {
           <CreateUsers />
         </Column>
         <Column>
-        <span>Usuarios cadastrados</span>
-        <Table
-          data={usuarios}
-          contents={['nome', 'email', 'tipo_do_usuario']}
-        />
+          <span>Usuarios cadastrados</span>
+          <Table data={users} contents={['nome', 'email', 'tipo_do_usuario']} />
         </Column>
       </DoubleElementsInRow>
     </AppLayout>

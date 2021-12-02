@@ -7,6 +7,7 @@ interface Props {
   reg: any
   options: any
   required?: boolean
+  onChange?: (props: string) => void
 }
 
 const Select: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const Select: React.FC<Props> = ({
   reg,
   options,
   required,
+  onChange
 }) => {
   return (
     <S.Container>
@@ -24,6 +26,7 @@ const Select: React.FC<Props> = ({
         defaultValue={defaultValue}
         {...reg}
         required={required}
+        onChange={onChange}
       >
         {options &&
           options.map(({ value, label }, key) => (
