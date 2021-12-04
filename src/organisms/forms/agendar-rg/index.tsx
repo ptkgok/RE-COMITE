@@ -21,7 +21,7 @@ const ToScheduleRg: React.FC = () => {
 
   // States
   const [modalOpen, setModalOpen] = useState(false)
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState()
   const [datas, setDatas] = useState([])
   const [dataEscolhida, setDataEscolhida] = useState('')
   const [horas, setHoras] = useState('')
@@ -40,7 +40,7 @@ const ToScheduleRg: React.FC = () => {
         '/api/general-registers/schedule',
         payload
       )
-      setResult(data)
+      // setResult(data)
       setTimeout(() => window.location.reload(), 5000)
     } catch (error) {
       console.log(error)

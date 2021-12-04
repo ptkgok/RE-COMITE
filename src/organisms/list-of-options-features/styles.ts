@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.div`
   display: flex;
@@ -6,4 +7,8 @@ export const Container = styled.div`
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
+
+  ${media.lessThan('medium')`
+    flex-direction: column;
+  `}
 `

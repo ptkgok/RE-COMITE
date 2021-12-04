@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.div`
   width: 70px;
@@ -13,4 +14,9 @@ export const Container = styled.div`
   padding-top: 50px;
   z-index: 999;
   position: fixed;
+
+  ${media.lessThan('medium')`
+    width: 60px;
+    height: 100%;
+  `}
 `

@@ -1,5 +1,6 @@
 import theme from 'assets/styles/theme'
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.div`
   width: 100%;
@@ -20,6 +21,9 @@ export const Profile = styled.div`
   gap: 15px;
   overflow: hidden;
   padding: 0px 20px;
+  ${media.lessThan('medium')`
+    right: 10px;
+  `}
 `
 
 export const ProfileImage = styled.img`

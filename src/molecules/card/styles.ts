@@ -1,5 +1,6 @@
 import theme from 'assets/styles/theme'
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.div`
   width: 33.33%;
@@ -24,6 +25,13 @@ export const Container = styled.div`
     -webkit-font-smoothing: subpixel-antialiased;
     transform: scale(1.005);
   }
+
+  ${media.lessThan('medium')`
+    width: 100%;
+    height: 120px;
+    gap: 5px;
+    font-size: 11px;
+  `}
 `
 export const IconCard = styled.div`
   border-radius: ${theme.border.radius};

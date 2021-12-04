@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AppLayout from 'layouts/app'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import Table from 'organisms/table'
@@ -35,7 +35,26 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { ['@IIPM/user']: user } = parseCookies(ctx)
   const data = await GetAllRgs(user?.id)
-  return { props: { data } }
+
+  const changeFields: any = (data: any) => {
+    return data.map((item: any) => {
+      return {
+        ...item,
+        // change date format
+        data_de_solicitacao: item.data_de_solicitacao
+          .toLocaleString()
+          .split(' ')[0],
+        data_de_agendamento: item.data_de_agendamento
+          .toLocaleString()
+          .split(' ')[0],
+        data_de_nascimento: item.data_de_nascimento
+          .toLocaleString()
+          .split(' ')[0]
+      }
+    })
+  }
+
+  return { props: { data: changeFields(data) } }
 }
 
 export default ListarTodosScreen
