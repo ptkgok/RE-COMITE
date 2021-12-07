@@ -1,5 +1,14 @@
 import React from 'react'
-import { BiCalendarPlus, BiHistory, BiHourglass, BiIdCard, BiListUl, BiLocationPlus, BiReceipt, BiUser } from 'react-icons/bi'
+import {
+  BiCalendarPlus,
+  BiHistory,
+  BiHourglass,
+  BiIdCard,
+  BiListUl,
+  BiLocationPlus,
+  BiReceipt,
+  BiUser
+} from 'react-icons/bi'
 
 export const FeaturesCardList = [
   {
@@ -20,6 +29,13 @@ export const FeaturesCardList = [
     description:
       'Relatório de Agendamento, Reeimpressão e Produtividade diária',
     url: '/relatorios'
+  },
+  {
+    icon: <BiReceipt size="1.2rem" />,
+    title: 'Solicitações de Certidão',
+    description:
+      'Gerenciar solicitações de certidão de nascimento, casamento, etc.',
+    url: '/adm/certidao'
   }
 ]
 

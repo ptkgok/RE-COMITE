@@ -15,10 +15,7 @@ const FormSolicitarCertidao: React.FC = () => {
   const user = userString ? JSON.parse(userString) : null
 
   const onSubmit = async payload => {
-    payload.data_de_nascimento = new Date(payload.data_de_nascimento)
-    payload.data_de_solicitacao = new Date(payload.data_de_nascimento)
-    const { data } = await axios.post('/api/require-certificate', payload)
-    console.log(data)
+    const { data } = await axios.put('/api/certificates/require', payload)
   }
 
   return (
@@ -40,7 +37,10 @@ const FormSolicitarCertidao: React.FC = () => {
           required
         />
         <DoubleElementsInRow>
-          <Input title="CPF" reg={{ ...register('cpf') }} />
+          <Input
+            title="CPF"
+            reg={{ ...register('cpf'), name: 'patrickinhoo' }}
+          />
           <Input title="RG" reg={{ ...register('rg') }} />
         </DoubleElementsInRow>
       </O.LeftSide>

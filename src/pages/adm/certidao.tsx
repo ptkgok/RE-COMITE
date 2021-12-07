@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import AppLayout from 'layouts/app'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Table from 'organisms/table'
 import theme from 'assets/styles/theme'
-import { GetAllRgs } from 'services/data/get-all-rgs'
 import { parseCookies } from 'nookies'
 import LoaderTables from 'molecules/loaders'
+import { getAllCertSolicitation } from '@services/data/get-all-cert-solicitation'
 import moment from 'moment'
 
-const ListarTodosScreen: React.FC = ({ data }: any) => {
+const ListarSolicitacaoDeCertidaoScreen: React.FC = ({ data }: any) => {
+  console.log(data)
+
   return (
     <AppLayout>
       <h3 style={{ marginBottom: 15, color: theme.colors.primary }}>
@@ -25,6 +27,7 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
             'contato',
             'data_de_solicitacao'
           ]}
+          url=""
         />
       ) : (
         <LoaderTables />
@@ -35,7 +38,7 @@ const ListarTodosScreen: React.FC = ({ data }: any) => {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { ['@IIPM/user']: user } = parseCookies(ctx)
-  const data = await GetAllRgs(user?.id)
+  const data = await getAllCertSolicitation()
 
   const changeFields: any = (data: any) => {
     return data.map((item: any) => {
@@ -56,4 +59,4 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   return { props: { data: changeFields(data) } }
 }
 
-export default ListarTodosScreen
+export default ListarSolicitacaoDeCertidaoScreen

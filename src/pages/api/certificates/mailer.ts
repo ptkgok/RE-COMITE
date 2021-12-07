@@ -1,11 +1,7 @@
 import { MailtrapMailProvider, IMessage } from '@services/utils/mailer'
 import { VercelRequest, VercelResponse } from '@vercel/node'
 
-MailtrapMailProvider
-
 class SendMailController {
-  private Mail = new MailtrapMailProvider()
-
   public async send(Request: VercelRequest, Response: VercelResponse) {
     try {
       const data = Request.body
@@ -13,8 +9,8 @@ class SendMailController {
 
       const Mail: IMessage = {
         to: {
-          name: data.EmailDoSolicitante.split('.')[0],
-          email: data.EmailDoSolicitante
+          name: data.email_do_solicitante.split('.')[0],
+          email: data.email_do_solicitante
         },
         from: {
           name: data.Orgao,
@@ -29,19 +25,18 @@ class SendMailController {
         <br />
         <h1>Resposta de Solicitação de dados</h1>
                <ul>
-                <li>Distrito: ${data.Distrito}</li>
-                <li>Comarca: ${data.Comarca}</li>
-                <li>Livro: ${data.Livro}</li>
-                <li>Folha: ${data.Folha}</li>
-                <li>Termo: ${data.Termo}</li>
-                <li>RG: ${data.RG}</li>
-                <li>Resposta: ${data.Resposta}</li>
-                <li>Tipo de certidão: ${data.TipoDeCertidao}</li>
-                <li>Observação: ${data.Observacao}</li>
-                <li>Distrito: ${data.Distrito}</li>
-                <li>EmailDoSolicitante: ${data.EmailDoSolicitante} </li>
-                <li>EstadoDeNaturalidade: ${data.EstadoDeNaturalidade} </li>
-                <li>EstadoRegistro: ${data.EstadoRegistro}</li>
+                <li>Distrito: ${data.distrito}</li>
+                <li>Comarca: ${data.comarca}</li>
+                <li>Livro: ${data.livro}</li>
+                <li>Folha: ${data.folha}</li>
+                <li>Termo: ${data.termo}</li>
+                <li>RG: ${data.rg}</li>
+                <li>Resposta: ${data.resposta}</li>
+                <li>Tipo de certidão: ${data.tipo_de_certidao}</li>
+                <li>Observação: ${data.observacao}</li>
+                <li>Email Do Solicitante: ${data.email_do_solicitante} </li>
+                <li>Estado De Naturalidade: ${data.estado_de_naturalidade} </li>
+                <li>Estado de Registro: ${data.estado_de_registro}</li>
                </ul>
         `
       }
