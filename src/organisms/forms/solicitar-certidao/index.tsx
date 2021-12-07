@@ -17,7 +17,7 @@ const FormSolicitarCertidao: React.FC = () => {
   const onSubmit = async payload => {
     payload.data_de_nascimento = new Date(payload.data_de_nascimento)
     payload.data_de_solicitacao = new Date(payload.data_de_nascimento)
-    const { data } = await axios.post('/api/require-certificate', payload)
+    const { data } = await axios.post('/api/certificate/require', payload)
     console.log(data)
   }
 
