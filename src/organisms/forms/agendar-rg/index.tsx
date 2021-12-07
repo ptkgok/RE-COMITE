@@ -37,7 +37,7 @@ const ToScheduleRg: React.FC = () => {
 
     try {
       const { data } = await axios.post(
-        '/api/general-registers/schedule',
+        `/api/general-registers/schedule?id=${result}`,
         payload
       )
       // setResult(data)
@@ -65,6 +65,7 @@ const ToScheduleRg: React.FC = () => {
                 setDataEscolhida(data.data)
                 setModalOpen(!modalOpen)
                 setHoras(data.hora)
+                setResult(data.id)
               }}
             >
               <Button

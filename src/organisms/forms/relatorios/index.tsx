@@ -7,6 +7,7 @@ import * as O from './styles'
 import axios from 'axios'
 import { StatusData } from '@services/data/static-selects'
 import { FormEvent } from 'hoist-non-react-statics/node_modules/@types/react'
+import ProductivityReport from '@services/reports/productivity'
 
 
 const Relatorios: React.FC = () => {
@@ -25,7 +26,7 @@ const Relatorios: React.FC = () => {
   return (
     <>
       <O.Container_Centralize>
-        {/* <button type="button" onClick={() => window.open('/api/reports/generate-report',"_blank")}>Chamar Relatório</button> */}
+        <button type="button" onClick={(e)=>ProductivityReport([{id: 1, name: 'Patrick'}])}>Chamar Relatório</button>
 
         {option === 0 && (
           <>

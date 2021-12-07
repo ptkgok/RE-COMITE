@@ -1,17 +1,16 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import moment from 'moment'
 import { Prisma } from 'services/utils/prisma-client'
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  const data = request.body
-  console.log(new Date(data.data).getDate())
+  const {posto} = request.query
+  console.log(posto)
   try {
     // const horarios = await Prisma.$queryRaw`SELECT DISTINCT * FROM Horario WHERE posto = ${data.posto}
     //   AND data>${data.data} AND marcado = "" ORDER BY data`;
     const horarios = await Prisma.horario.findMany({
       where: {
         AND: [
-          { posto: data.posto },
+          { posto },
           { data: { gt: new Date().toISOString() } },
           { marcado: 'nao' }
         ]
