@@ -8,6 +8,7 @@ interface Props {
   options: any
   required?: boolean
   onChange?: (props: string) => void
+  value?: string
 }
 
 const Select: React.FC<Props> = ({

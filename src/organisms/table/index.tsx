@@ -7,9 +7,10 @@ interface Props {
   data: string[]
   contents: string[]
   url?: string
+  byId?: boolean
 }
 
-const Table: React.FC<Props> = ({ data, contents, url }) => {
+const Table: React.FC<Props> = ({ data, contents, url, byId }) => {
   const GettingColumns: string[] = data && data[0] && Object.keys(data[0])
   const Columns: string[] =
     data && data[0] && ChooseColumns(GettingColumns, contents)
@@ -32,7 +33,7 @@ const Table: React.FC<Props> = ({ data, contents, url }) => {
           ))}
           {data && url && (
             <S.Column>
-              <a href={url}>Editar</a>
+              <a href={byId ? url + data[key].id : url}>Editar</a>
             </S.Column>
           )}
         </S.Row>

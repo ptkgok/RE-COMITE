@@ -4,6 +4,7 @@ import * as S from './styles'
 interface Props {
   title: string
   defaultValue?: string
+  value?: string
   reg: any
   required?: boolean
   disabled?: boolean

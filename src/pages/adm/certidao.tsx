@@ -27,7 +27,8 @@ const ListarSolicitacaoDeCertidaoScreen: React.FC = ({ data }: any) => {
             'contato',
             'data_de_solicitacao'
           ]}
-          url=""
+          url={'/adm/responder-certidao?id='}
+          byId={true}
         />
       ) : (
         <LoaderTables />
