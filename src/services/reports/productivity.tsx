@@ -1,5 +1,6 @@
 import pdfmake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+import { TDocumentDefinitions } from 'pdfmake/interfaces'
 
 function ProductivityReport(payload) {
   pdfmake.vfs = pdfFonts.pdfMake.vfs
@@ -13,34 +14,16 @@ function ProductivityReport(payload) {
     }
   ]
 
-  const data = payload.map(data => { // pass array returned of report form
+  const data = payload.map(data => {
     return [
-      {
-        text: 'Código',
-        style: 'tableHeader',
-        fontSize: 9,
-        margin: [0, 2, 0, 2]
-      },
-      {
-        text: 'Código',
-        style: 'tableHeader',
-        fontSize: 9,
-        margin: [0, 2, 0, 2]
-      },
-      {
-        text: 'Código',
-        style: 'tableHeader',
-        fontSize: 9,
-        margin: [0, 2, 0, 2]
-      },
-      {
-        text: 'Código',
-        style: 'tableHeader',
-        fontSize: 9,
-        margin: [0, 2, 0, 2]
-      }
+      { text: data.nome_completo, fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: data.cpf, fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: data.motivo, fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: data.data_de_solicitacao, fontSize: 9, margin: [0, 2, 0, 2] }
     ]
   })
+
+  console.log(data)
 
   const details = [
     {
@@ -54,12 +37,7 @@ function ProductivityReport(payload) {
             { text: 'Código', style: 'tableHeader', fontSize: 10 },
             { text: 'Código', style: 'tableHeader', fontSize: 10 }
           ],
-          [
-            {  text: '00001', fontSize: 9, margin: [0, 2, 0, 2] },
-            {  text: 'Heber', fontSize: 9, margin: [0, 2, 0, 2] },
-            {  text: 'heber@99coders.com', fontSize: 9, margin: [0, 2, 0, 2] },
-            {  text: '(11) 0000-0000', fontSize: 9, margin: [0, 2, 0, 2] }
-          ]
+          ...data
         ]
       },
       layout: 'headerLineOnly'
@@ -78,7 +56,7 @@ function ProductivityReport(payload) {
     ]
   }
 
-  const docDefinitions = {
+  const docDefinitions: any = {
     pageSize: 'A4',
     pageMargins: [15, 50, 15, 40],
     header: [reportTitle],

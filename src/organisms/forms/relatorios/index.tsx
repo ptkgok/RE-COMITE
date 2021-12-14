@@ -15,11 +15,22 @@ const Relatorios: React.FC = () => {
   const [result, setResult] = useState('')
   const [option, setOption] = useState(0)
   
-  const onSubmit = async (payload) => {
+  const GetReportsOfSchedules = async (payload) => {
     payload['data_de_solicitaçao_inicial'] = new Date(payload['data_de_solicitaçao_inicial'])
     payload['data_de_solicitaçao_final'] = new Date(payload['data_de_solicitaçao_final'])
     const {data} = await axios.post('/api/reports/report-scheduling',payload)
-    console.log(data)
+    setResult(data)
+    ProductivityReport(data)
+  }
+
+  const GetReportsProductivityDiary = async (payload) => {
+    const {data} = await axios.post('/api/reports/productivity-diary',payload)
+    setResult(data)
+  }
+
+  const GetReportsReemimpression = async (payload) => {
+    const {data} = await axios.post('/api/reports/reemimpression',payload)
+    setResult(data)
   }
 
 
@@ -55,7 +66,7 @@ const Relatorios: React.FC = () => {
         )}
 
         {option === 1 && (
-          <O.Container_Form onSubmit={handleSubmit(onSubmit)}>
+          <O.Container_Form onSubmit={handleSubmit(GetReportsProductivityDiary)}>
             <h4>
               <BiArrowBack onClick={() => window.location.reload()} /> Relatório
               de Produtividade Diária
@@ -88,12 +99,13 @@ const Relatorios: React.FC = () => {
               height="40px"
               width="100%"
               icon={<BiAbacus />}
+              onClick={()=>ProductivityReport(result)}
             />
           </O.Container_Form>
         )}
 
         {option === 2 && (
-          <O.Container_Form onSubmit={handleSubmit(onSubmit)}>
+          <O.Container_Form onSubmit={handleSubmit(GetReportsReemimpression)}>
             <h4>
               <BiArrowBack onClick={() => window.location.reload()} /> Relatório
               de Reeimpressão
@@ -122,7 +134,7 @@ const Relatorios: React.FC = () => {
         )}
 
         {option === 3 && (
-          <O.Container_Form onSubmit={handleSubmit(onSubmit)}>
+          <O.Container_Form onSubmit={handleSubmit(GetReportsOfSchedules)}>
             <h4>
               <BiArrowBack onClick={() => window.location.reload()} /> Relatório
               De Agendamento
