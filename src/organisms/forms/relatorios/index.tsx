@@ -26,11 +26,13 @@ const Relatorios: React.FC = () => {
   const GetReportsProductivityDiary = async (payload) => {
     const {data} = await axios.post('/api/reports/productivity-diary',payload)
     setResult(data)
+    ProductivityReport(data)
   }
 
   const GetReportsReemimpression = async (payload) => {
     const {data} = await axios.post('/api/reports/reemimpression',payload)
     setResult(data)
+    ProductivityReport(data)
   }
 
 
